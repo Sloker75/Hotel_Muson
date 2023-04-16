@@ -7,5 +7,6 @@
         public int Salary { get; set; }
 
         //TODO: More options
+
     }
 }
