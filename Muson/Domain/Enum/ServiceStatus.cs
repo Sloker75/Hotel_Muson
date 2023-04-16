@@ -1,4 +1,4 @@
-﻿namespace Muson.Data.Enum
+﻿namespace Domain.Enum
 {
     public enum ServiceStatus
     {

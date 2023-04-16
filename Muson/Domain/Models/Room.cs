@@ -1,7 +1,7 @@
-﻿using Muson.Data.Enum;
+﻿using Domain.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace Muson.Models
+namespace Domain.Models
 {
     public class Room
     {

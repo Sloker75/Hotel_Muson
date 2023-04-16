@@ -1,12 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Muson.Models
+namespace Domain.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Key]
-        public string Id { get; set; }
         public string Name { get; set; }
         [ForeignKey("Employee")]
         public int? EmployeeId { get; set; }

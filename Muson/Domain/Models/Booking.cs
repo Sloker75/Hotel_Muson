@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Muson.Models
+
+namespace Domain.Models
 {
     public class Booking
     {
@@ -17,8 +18,7 @@ namespace Muson.Models
         public int ServiceId { get; set; }
         public Service Service { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
-        public User User { get; set; }
-
+        public string? UserId { get; set; }
+        public User? User { get; set; }
     }
 }

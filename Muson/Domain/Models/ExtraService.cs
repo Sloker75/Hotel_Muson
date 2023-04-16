@@ -1,8 +1,8 @@
-﻿using Muson.Data.Enum;
+﻿using Domain.Enum;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Muson.Models
+namespace Domain.Models
 {
     public class ExtraService
     {
@@ -14,8 +14,9 @@ namespace Muson.Models
         public DateTime CreationTime { get; set; }
         public int RoomNumber { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public string? UserId { get; set; }
+        public User? User { get; set; }
 
+        //TODO: Menu
     }
 }

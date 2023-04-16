@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Muson.Models
+namespace Domain.Models
 {
     public class Service
     {
@@ -14,6 +14,5 @@ namespace Muson.Models
         public bool hasParkingLot { get; set; }
         public bool hasIron { get; set; }
         public bool hasBabysitter { get; set; }
-
     }
 }
