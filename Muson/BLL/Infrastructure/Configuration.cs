@@ -1,4 +1,5 @@
 ﻿using DLL.Context;
+using DLL.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ namespace BLL.Infrastructure
 
             builder.AddEntityFrameworkStores<MusonHotelContext>();
 
-
+            builder.Services.AddTransient<RoomRepository>();
         }
     }
 }
