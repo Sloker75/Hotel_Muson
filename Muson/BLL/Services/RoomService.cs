@@ -1,12 +1,8 @@
 ﻿using BLL.Services.Interfaces;
 using DLL.Repository;
 using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Domain.Models.ViewModels;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -18,7 +14,18 @@ namespace BLL.Services
         {
             _roomRepository = roomRepository;
         }
-        public async Task AddRoomAsync(Room room) => await _roomRepository.CreateAsync(room);
+        public async Task AddRoomAsync(RoomViewModel roomVM)
+        {
+            Room room = new Room()
+            {
+                RoomNumber = roomVM.RoomNumber,
+                CountRoom = roomVM.CountRoom,
+                Floor = roomVM.Floor,
+                TypeRoom = roomVM.TypeRoom,
+                Status = roomVM.Status,
+            };
+            await _roomRepository.CreateAsync(room);
+        }
 
         public async Task<IReadOnlyCollection<Room>> GetAllAsync() => await _roomRepository.GetAllAsync();
 
@@ -31,5 +38,8 @@ namespace BLL.Services
             => await _roomRepository.FindByConditionAsync(predicat);
 
         public async Task RemoveRoomAsync(int remRoomId) => await _roomRepository.DeleteRoomAsync(remRoomId);
+
+        public async Task ChangeRoomAsync(RoomViewModel roomVM, int oldRoomId)
+            => await _roomRepository.ChangeRoomAsync(roomVM, oldRoomId);
     }
 }

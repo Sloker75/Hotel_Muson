@@ -1,6 +1,7 @@
 ﻿using DLL.Context;
 using DLL.Repository.Interfaces;
 using Domain.Models;
+using Domain.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -12,7 +13,7 @@ namespace DLL.Repository
         {
         }
 
-        public async Task ChangeRoomAsync(Room newRoom, int oldRoomId)
+        public async Task ChangeRoomAsync(RoomViewModel newRoom, int oldRoomId)
         {
             var oldRoom = Entities.Find(oldRoomId);
 
@@ -21,7 +22,6 @@ namespace DLL.Repository
             oldRoom.Floor = newRoom.Floor;
             oldRoom.TypeRoom = newRoom.TypeRoom;
             oldRoom.Status = newRoom.Status;
-            oldRoom.Bookings = newRoom.Bookings;
 
             base._musonHotelContext.Entry(oldRoom).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             await base._musonHotelContext.SaveChangesAsync();
