@@ -1,8 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Room";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@using Domain.Enum
+@using Domain.Models
+@model List<Room>
+
+<h1>Room</h1>
 <li><a asp-controller="Room" asp-action="Create" class="nav-link px-2">CreateRoom</a></li>
 
+@foreach (var roomItem in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h5 class="card-title">Room @roomItem.RoomNumber</h5>
+        <h6 class="card-subtitle mb-2 text-muted">The room has @roomItem.CountRoom beds and is located on the @roomItem.Floor floor</h6>
+        @*<a asp-controller="Room" asp-action="Edit" asp-route-id="@roomItem.Id" class="card-link">Edit</a>*@
+            @Html.ActionLink("Edit", "Edit", new { editRoomId = roomItem.Id }, new { @class = "card-link" })
+        @*<a asp-controller="Room" asp-action="Delete" asp-route-id="@roomItem.Id" class="card-link">Delete</a>*@
+            @Html.ActionLink("Delete", "Delete", new { remRoomId = roomItem.Id }, new { @class = "card-link" })
+      </div>
+    </div>
+}
 
 
