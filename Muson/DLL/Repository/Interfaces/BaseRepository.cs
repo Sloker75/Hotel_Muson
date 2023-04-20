@@ -2,7 +2,6 @@
 using DLL.Model;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
-using System;
 using System.Linq.Expressions;
 
 namespace DLL.Repository.Interfaces
@@ -19,10 +18,10 @@ namespace DLL.Repository.Interfaces
         private DbSet<TEntity> _entities;
         protected DbSet<TEntity> Entities => this._entities ??= _musonHotelContext.Set<TEntity>();
 
-        public virtual async Task<IReadOnlyCollection<TEntity>> GetAllAsync() 
+        public virtual async Task<IReadOnlyCollection<TEntity>> GetAllAsync()
             => await this.Entities.ToListAsync().ConfigureAwait(false);
 
-        public virtual async Task<IReadOnlyCollection<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> predicat) 
+        public virtual async Task<IReadOnlyCollection<TEntity>> FindByConditionAsync(Expression<Func<TEntity, bool>> predicat)
             => await this.Entities.Where(predicat).ToListAsync().ConfigureAwait(false);
 
         public virtual async Task<OperationDetail> CreateAsync(TEntity entity)

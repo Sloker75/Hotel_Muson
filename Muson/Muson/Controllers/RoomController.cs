@@ -15,7 +15,7 @@ namespace Muson.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View( await _roomService.GetAllAsync());
+            return View(await _roomService.GetAllAsync());
         }
 
         [HttpGet]
@@ -36,7 +36,7 @@ namespace Muson.Controllers
         public async Task<IActionResult> Edit(int editRoomId)
         {
             Room room = (await _roomService.FindByConditionAsync(x => x.Id == editRoomId)).First();
-            if(room == null) return RedirectToRoute(new { Controller = "Home", Action = "Index" });
+            if (room == null) return RedirectToRoute(new { Controller = "Home", Action = "Index" });
             /*RoomViewModel roomVM = new RoomViewModel()
             {
                 RoomNumber = room.RoomNumber,
@@ -76,7 +76,7 @@ namespace Muson.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteRoom( int Id)
+        public async Task<IActionResult> DeleteRoom(int Id)
         {
             if (ModelState.IsValid)
             {

@@ -1,9 +1,6 @@
-﻿using Domain.Enum;
-using Domain.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DLL.Context
 {
