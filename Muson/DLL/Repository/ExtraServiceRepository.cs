@@ -41,10 +41,12 @@ namespace DLL.Repository
         }
 
         public async override Task<IReadOnlyCollection<ExtraService>> GetAllAsync()
-            => await this.Entities.Include(x => x.User).ThenInclude(x => x.Bookings).ThenInclude(x => x.Room).ToListAsync().ConfigureAwait(false);
+            => await this.Entities.Include(x => x.User).ThenInclude(x => x.Bookings)
+            .ThenInclude(x => x.Room).ToListAsync().ConfigureAwait(false);
 
         public async override Task<IReadOnlyCollection<ExtraService>> FindByConditionAsync(Expression<Func<ExtraService, bool>> predicat)
-            => await this.Entities.Include(x => x.User).ThenInclude(x => x.Bookings).ThenInclude(x => x.Room).Where(predicat).ToListAsync().ConfigureAwait(false);
+            => await this.Entities.Include(x => x.User).ThenInclude(x => x.Bookings)
+            .ThenInclude(x => x.Room).Where(predicat).ToListAsync().ConfigureAwait(false);
 
     }
 }
