@@ -8,6 +8,7 @@ namespace Muson.Controllers
     public class RoomController : Controller
     {
         private readonly RoomService _roomService;
+        private List<RoomViewModel> roomViewModels;
 
         public RoomController(RoomService roomService)
         {
@@ -15,7 +16,20 @@ namespace Muson.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _roomService.GetAllAsync());
+            var roomModels = await _roomService.GetAllAsync();
+            roomViewModels = roomModels.Select(rm => new RoomViewModel
+            {
+                RoomId = rm.Id,
+                RoomNumber = rm.RoomNumber,
+                CountRoom = rm.CountRoom,
+                Floor = rm.Floor,
+                TypeRoom = rm.TypeRoom,
+                Status = rm.Status,
+                Bookings = rm.Bookings
+
+            }).ToList();
+
+            return View(roomViewModels);
         }
 
         [HttpGet]
@@ -27,61 +41,65 @@ namespace Muson.Controllers
             if (ModelState.IsValid)
             {
                 await _roomService.AddRoomAsync(roomVM);
-                return View("Index", await _roomService.GetAllAsync());
+                return RedirectToAction("Index");
             }
             return RedirectToRoute(new { Controller = "Home", Action = "Index" });
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int editRoomId)
+        public async Task<IActionResult> Edit(int RoomId)
         {
-            Room room = (await _roomService.FindByConditionAsync(x => x.Id == editRoomId)).First();
+            Room room = (await _roomService.FindByConditionAsync(x => x.Id == RoomId)).First();
             if (room == null) return RedirectToRoute(new { Controller = "Home", Action = "Index" });
-            /*RoomViewModel roomVM = new RoomViewModel()
+            RoomViewModel roomVM = new RoomViewModel()
             {
+                RoomId = room.Id,
                 RoomNumber = room.RoomNumber,
                 CountRoom = room.CountRoom,
                 Floor = room.Floor,
                 TypeRoom = room.TypeRoom,
-                Status = room.Status
-            };*/
-            return View(room);
+                Status = room.Status,
+                Bookings = room.Bookings
+            };
+            return View(roomVM);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(RoomViewModel roomVM, int Id)
+        public async Task<IActionResult> Edit(RoomViewModel roomVM, int RoomId)
         {
-            if (roomVM != null && Id != null)
+            if (roomVM != null && RoomId != null)
             {
-                await _roomService.ChangeRoomAsync(roomVM, Id);
-                return View("Index", await _roomService.GetAllAsync());
+                await _roomService.ChangeRoomAsync(roomVM, RoomId);
+                return RedirectToAction("Index");
             }
             return RedirectToRoute(new { Controller = "Home", Action = "Index" });
         }
 
         [HttpGet]
-        public async Task<IActionResult> Delete(int remRoomId)
+        public async Task<IActionResult> Delete(int RoomId)
         {
-            Room room = (await _roomService.FindByConditionAsync(x => x.Id == remRoomId)).First();
+            Room room = (await _roomService.FindByConditionAsync(x => x.Id == RoomId)).First();
             if (room == null) return RedirectToRoute(new { Controller = "Home", Action = "Index" });
-            /*RoomViewModel roomVM = new RoomViewModel()
+            RoomViewModel roomVM = new RoomViewModel()
             {
+                RoomId = room.Id,
                 RoomNumber = room.RoomNumber,
                 CountRoom = room.CountRoom,
                 Floor = room.Floor,
                 TypeRoom = room.TypeRoom,
-                Status = room.Status
-            };*/
-            return View(room);
+                Status = room.Status,
+                Bookings = room.Bookings
+            };
+            return View(roomVM);
         }
 
         [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteRoom(int Id)
+        public async Task<IActionResult> DeleteRoom(int RoomId)
         {
             if (ModelState.IsValid)
             {
-                await _roomService.RemoveRoomAsync(Id);
-                return View("Index", await _roomService.GetAllAsync());
+                await _roomService.RemoveRoomAsync(RoomId);
+                return RedirectToAction("Index");
             }
             return RedirectToRoute(new { Controller = "Home", Action = "Index" });
         }

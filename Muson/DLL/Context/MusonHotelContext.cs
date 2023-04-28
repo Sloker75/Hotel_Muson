@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Data.Entity.ModelConfiguration;
 
 namespace DLL.Context
 {
@@ -31,6 +32,26 @@ namespace DLL.Context
            .Entity<Room>()
            .Property(x => x.TypeRoom)
            .HasConversion(new EnumToStringConverter<TypeRoom>());
+        }*/
+
+        /*public class UserConfiguration : EntityTypeConfiguration<User>
+        {
+            public UserConfiguration()
+            {
+                HasOptional(u => u.Employee)
+                    .WithRequired(e => e.User)
+                    .WillCascadeOnDelete(true);
+            }
+        }
+
+        public class EmployeeConfiguration : EntityTypeConfiguration<Employee>
+        {
+            public EmployeeConfiguration()
+            {
+                HasRequired(e => e.User)
+                    .WithOptional(u => u.Employee)
+                    .WillCascadeOnDelete(false);
+            }
         }*/
     }
 }

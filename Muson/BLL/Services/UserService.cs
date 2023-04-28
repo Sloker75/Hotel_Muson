@@ -1,23 +1,38 @@
 ﻿using BLL.Services.Interfaces;
 using DLL.Repository;
 using Domain.Models;
+using Domain.Models.ViewModels;
 using System.Linq.Expressions;
 
 namespace BLL.Services
 {
-    public class UserService : IExtraServiceService, IBookingService
+    public class UserService : IExtraServiceService, IBookingService, IUserService
     {
         private readonly ExtraServiceRepository _extraServiceRepository;
         private readonly BookingRepository _bookingRepository;
+        private readonly UserRepository _userRepository;
 
-        public UserService(ExtraServiceRepository extraServiceRepository, BookingRepository bookingRepository)
+        public UserService(UserRepository userRepository, ExtraServiceRepository extraServiceRepository, BookingRepository bookingRepository)
         {
             _extraServiceRepository = extraServiceRepository;
             _bookingRepository = bookingRepository;
+            _userRepository = userRepository;
         }
 
         #region User
+        public async Task<IReadOnlyCollection<User>> GetAllUserAsync()
+            => await _userRepository.GetAllAsync();
+        public async Task ChangeUserAsync(User newUser, string oldUserId)
+            => await _userRepository.ChangeUserAsync(newUser, oldUserId);
 
+        public async Task ChangeUserPasswordAsync(User user, string currentPassword, string newPassword)
+            => await _userRepository.ChangeUserPasswordAsync(user, currentPassword, newPassword);
+
+        public async Task<bool> RegistrationAsync(UserRegistrationViewModel userRegistrationVM)
+            => await _userRepository.RegistrationAsync(userRegistrationVM);
+
+        public async Task DeleteUserAsync(string remUserId)
+            => await _userRepository.DeleteUserAsync(remUserId);
         #endregion
 
 
@@ -55,6 +70,7 @@ namespace BLL.Services
 
         public async Task<IReadOnlyCollection<Booking>> FindByConditionAsync(Expression<Func<Booking, bool>> predicat)
             => await _bookingRepository.FindByConditionAsync(predicat);
+
 
         #endregion
 

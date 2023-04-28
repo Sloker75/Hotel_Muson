@@ -16,6 +16,10 @@ namespace BLL.Infrastructure
             builder.AddEntityFrameworkStores<MusonHotelContext>();
 
             builder.Services.AddTransient<RoomRepository>();
+            builder.Services.AddTransient<BookingRepository>();
+            builder.Services.AddTransient<ExtraServiceRepository>();
+            builder.Services.AddTransient<EmployeeRepository>();
+            //builder.Services.AddTransient<UserRepository>();
         }
     }
 }

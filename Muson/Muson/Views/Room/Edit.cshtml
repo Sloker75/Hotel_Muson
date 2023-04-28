@@ -1,6 +1,6 @@
 ﻿@using Domain.Enum
-@using Domain.Models
-@model Room
+@using Domain.Models.ViewModels
+@model RoomViewModel
 
 <form method="post" asp-action="Edit" enctype="multipart/form-data">
     <div class="form-group">
@@ -32,7 +32,6 @@
         </select>
         <span asp-validation-for="Status" class="text-danger"></span>
     </div>
-    @*<button type="submit" class="btn btn-primary">Submit</button>*@
-    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="RoomId" />
     <input type="submit" value="Submit" class="btn btn-primary" />
 </form>
