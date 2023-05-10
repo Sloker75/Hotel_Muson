@@ -5,7 +5,6 @@ using Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using System.Reflection.Metadata.Ecma335;
 
 namespace DLL.Repository
 {
@@ -13,14 +12,12 @@ namespace DLL.Repository
     {
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly SignInManager<User> _signInManager;
         public UserRepository(MusonHotelContext _musonHotelContext,
-            UserManager<User> userManager, RoleManager<IdentityRole> roleManager, 
-            SignInManager<User> signInManager) : base(_musonHotelContext)
+            UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+            : base(_musonHotelContext)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            _signInManager = signInManager;
         }
 
         public async Task ChangeUserAsync(User newUser, string oldUserId)

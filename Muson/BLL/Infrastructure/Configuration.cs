@@ -1,6 +1,8 @@
 ﻿using DLL.Context;
 using DLL.Repository;
+using Domain.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,13 +15,19 @@ namespace BLL.Infrastructure
         {
             serviceCollection.AddDbContext<MusonHotelContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Muson")));
 
+            
+
             builder.AddEntityFrameworkStores<MusonHotelContext>();
 
             builder.Services.AddTransient<RoomRepository>();
             builder.Services.AddTransient<BookingRepository>();
             builder.Services.AddTransient<ExtraServiceRepository>();
             builder.Services.AddTransient<EmployeeRepository>();
-            //builder.Services.AddTransient<UserRepository>();
+            builder.Services.AddTransient<RoleManager<IdentityRole>>();
+            //builder.Services.AddTransient<IUserStore<User>, UserStore<User, IdentityRole, MusonHotelContext, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, IdentityUserToken<string>, IdentityRoleClaim<string>>>();
+
+            builder.Services.AddTransient<UserRepository>();
+
         }
     }
 }

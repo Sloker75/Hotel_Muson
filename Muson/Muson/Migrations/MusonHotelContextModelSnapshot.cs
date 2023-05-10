@@ -74,6 +74,9 @@ namespace Muson.Migrations
                     b.Property<int>("Salary")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
@@ -238,7 +241,9 @@ namespace Muson.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EmployeeId");
+                    b.HasIndex("EmployeeId")
+                        .IsUnique()
+                        .HasFilter("[EmployeeId] IS NOT NULL");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -425,8 +430,8 @@ namespace Muson.Migrations
             modelBuilder.Entity("Domain.Models.User", b =>
                 {
                     b.HasOne("Domain.Models.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId");
+                        .WithOne("User")
+                        .HasForeignKey("Domain.Models.User", "EmployeeId");
 
                     b.Navigation("Employee");
                 });
@@ -479,6 +484,12 @@ namespace Muson.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Models.Employee", b =>
+                {
+                    b.Navigation("User")
                         .IsRequired();
                 });
 
