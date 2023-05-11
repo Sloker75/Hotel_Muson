@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 var identityBuilder = builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-        .AddRoles<IdentityRole>();
+        .AddRoles<AppRole>();
 
 BLL.Infrastructure.Configuration.ConfigurationService(builder.Services, connectionString, identityBuilder);
 

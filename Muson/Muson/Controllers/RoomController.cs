@@ -1,6 +1,7 @@
 ﻿using BLL.Services;
 using Domain.Models;
 using Domain.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Muson.Controllers
@@ -14,6 +15,7 @@ namespace Muson.Controllers
         {
             _roomService = roomService;
         }
+        [Authorize(Roles="User")]
         public async Task<IActionResult> Index()
         {
             var roomModels = await _roomService.GetAllAsync();

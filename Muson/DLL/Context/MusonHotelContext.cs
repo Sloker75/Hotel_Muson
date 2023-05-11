@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DLL.Context
 {
-    public class MusonHotelContext : IdentityDbContext<User>
+    public class MusonHotelContext : IdentityDbContext<User, AppRole, string>
     {
         public MusonHotelContext(DbContextOptions<MusonHotelContext> options) : base(options)
         {

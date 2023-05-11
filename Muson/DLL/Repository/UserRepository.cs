@@ -11,9 +11,9 @@ namespace DLL.Repository
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
         private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<AppRole> _roleManager;
         public UserRepository(MusonHotelContext _musonHotelContext,
-            UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+            UserManager<User> userManager, RoleManager<AppRole> roleManager)
             : base(_musonHotelContext)
         {
             _userManager = userManager;
@@ -73,8 +73,11 @@ namespace DLL.Repository
 
 
             if (!await _roleManager.RoleExistsAsync(userRegistrationVM.Role))
-                await _roleManager.CreateAsync(new IdentityRole(userRegistrationVM.Role));
-            else
+            {
+                string roleId = Guid.NewGuid().ToString();
+                await _roleManager.CreateAsync(new AppRole(userRegistrationVM.Role, roleId));
+            }
+            if (await _roleManager.RoleExistsAsync(userRegistrationVM.Role))
                 await _userManager.AddToRoleAsync(user, userRegistrationVM.Role);
 
             return true;

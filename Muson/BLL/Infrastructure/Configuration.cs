@@ -17,15 +17,14 @@ namespace BLL.Infrastructure
 
             
 
-            builder.AddEntityFrameworkStores<MusonHotelContext>();
+            builder.AddEntityFrameworkStores<MusonHotelContext>()
+                .AddDefaultTokenProviders();
 
             builder.Services.AddTransient<RoomRepository>();
             builder.Services.AddTransient<BookingRepository>();
             builder.Services.AddTransient<ExtraServiceRepository>();
             builder.Services.AddTransient<EmployeeRepository>();
-            builder.Services.AddTransient<RoleManager<IdentityRole>>();
-            //builder.Services.AddTransient<IUserStore<User>, UserStore<User, IdentityRole, MusonHotelContext, string, IdentityUserClaim<string>, IdentityUserRole<string>, IdentityUserLogin<string>, IdentityUserToken<string>, IdentityRoleClaim<string>>>();
-
+            builder.Services.AddTransient<RoleRepository>();
             builder.Services.AddTransient<UserRepository>();
 
         }

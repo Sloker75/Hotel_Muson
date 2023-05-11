@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Domain.Models
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -24,10 +34,19 @@
         <li><a asp-controller="Room" asp-action="Index" class="nav-link px-2">Room</a></li>
       </ul>
 
-      <div class="col-md-3 text-end">
-        <button type="button" asp-controller="Account" asp-action="Login" class="btn btn-outline-primary me-2">Login</button>
-        <button type="button" asp-controller="Account" asp-action="Registration" class="btn btn-primary">Registration</button>
-      </div>
+      @if (!SignInManager.IsSignedIn(User))
+      {
+          <div class="col-md-3 text-end">
+              <a asp-controller="Account" class="btn btn-outline-primary me-2" asp-action="Login" class="nav-link px-2 link-secondary">Login</a>
+              <a asp-controller="Account" class="btn btn-primary" asp-action="Registration" class="nav-link px-2 link-secondary">Registration</a>
+          </div>
+      }
+      else{
+          <div class="col-md-3 text-end">
+                  <a asp-controller="Account" class="btn btn-outline-primary me-2" asp-action="Logout" class="nav-link px-2 link-secondary">Logout</a>
+          </div>
+      }
+      
     </header>
   </div>
     </header>

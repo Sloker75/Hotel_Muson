@@ -8,7 +8,7 @@ namespace Muson.Infrastructure
         public static void ConfigurationService(IdentityBuilder builder)
         {
             builder.Services.AddTransient<RoomService>();
-            //builder.Services.AddTransient<UserService>();
+            builder.Services.AddTransient<UserService>();
         }
     }
 }
