@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@using Domain.Models
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
+    var currentUser = await UserManager.GetUserAsync(User);
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,25 +20,35 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Muson</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li><a asp-controller="Home" asp-action="Index" class="nav-link px-2 link-secondary">Home</a></li>
+        <li><a asp-controller="Home" asp-action="Privacy" class="nav-link px-2">Privacy</a></li>
+        <li><a asp-controller="Room" asp-action="Index" class="nav-link px-2">Room</a></li>
+      </ul>
+
+      @if (!SignInManager.IsSignedIn(User))
+      {
+          <div class="col-md-3 text-end">
+              <a asp-controller="Account" class="btn btn-outline-primary me-2" asp-action="Login" class="nav-link px-2 link-secondary">Login</a>
+              <a asp-controller="Account" class="btn btn-primary" asp-action="Registration" class="nav-link px-2 link-secondary">Registration</a>
+          </div>
+      }
+      else{
+          <div class="col-md-3 text-end">
+                  <a asp-controller="Account" class="btn btn-outline-primary me-2" asp-action="Logout" class="nav-link px-2 link-secondary">Logout</a>
+          </div>
+      }
+      
+    </header>
+  </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">

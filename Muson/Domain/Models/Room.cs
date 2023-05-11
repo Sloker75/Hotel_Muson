@@ -5,6 +5,7 @@ namespace Domain.Models
 {
     public class Room
     {
+
         [Key]
         public int Id { get; set; }
         public int RoomNumber { get; set; }

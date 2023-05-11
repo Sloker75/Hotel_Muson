@@ -1,0 +1,36 @@
+﻿@using Domain.Enum
+@using Domain.Models.ViewModels
+@model RoomViewModel
+
+<form method="post" asp-action="Create" enctype="multipart/form-data">
+  <div class="form-group">
+    <label asp-for="RoomNumber">Room Number</label>
+    <input asp-for="RoomNumber" class="form-control" placeholder="Room Number">
+    <span asp-validation-for="RoomNumber" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="CountRoom">CountRoom</label>
+    <input asp-for="CountRoom" class="form-control" placeholder="Count Room">
+    <span asp-validation-for="CountRoom" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Floor">Floor</label>
+    <input asp-for="Floor" class="form-control" placeholder="Floor">
+    <span asp-validation-for="Floor" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="TypeRoom">TypeRoom</label>
+    <select asp-for="TypeRoom" asp-items="@Html.GetEnumSelectList<TypeRoom>()" class="form-control">
+             <option>--Select--</option>
+    </select>
+    <span asp-validation-for="TypeRoom" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Status">Status</label>
+    <select asp-for="Status" asp-items="@Html.GetEnumSelectList<RoomStatus>()" class="form-control">
+             <option>--Select--</option>
+    </select>
+    <span asp-validation-for="Status" class="text-danger"></span>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
