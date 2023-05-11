@@ -33,9 +33,9 @@ namespace Muson.Controllers
         {
             var user = await _userManager.FindByEmailAsync(userLoginVM.Email);
             if(user == null)
-                return View("Error");
+                return View();
             if(!await _userManager.CheckPasswordAsync(user, userLoginVM.Password))
-                return View("Error");
+                return View();
             var signInResult = await _signInManager.PasswordSignInAsync(user, userLoginVM.Password, false, true);
             if (signInResult.Succeeded)
             {
@@ -46,10 +46,10 @@ namespace Muson.Controllers
                 };
                 foreach (var userRole in userRoles)
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                return View();
+                return RedirectToRoute(new { Controller = "Dashboard", Action = "Index" });
             }
             else
-                return View("Error");
+                return View();
         }
 
         [HttpGet]
@@ -64,9 +64,8 @@ namespace Muson.Controllers
         {
 
             userRegVM.Role = "User";
-            if (await _userService.RegistrationAsync(userRegVM)) return RedirectToAction("Index", "Home");
-            return View(userRegVM);
-
+            if (await _userService.RegistrationAsync(userRegVM)) return RedirectToAction("Login");
+            return View();
         }
 
         public async Task<IActionResult> Logout()

@@ -49,7 +49,7 @@ namespace BLL.Services
         public async Task RemoveExtraServiceAsync(int remExtraServiceId)
             => await _extraServiceRepository.DeleteExtraServiceAsync(remExtraServiceId);
 
-        public async Task<IReadOnlyCollection<ExtraService>> FindByConditionAsync(Expression<Func<ExtraService, bool>> predicat)
+        public async Task<IReadOnlyCollection<ExtraService>> FindByConditionExtraServiceAsync(Expression<Func<ExtraService, bool>> predicat)
             => await _extraServiceRepository.FindByConditionAsync(predicat);
 
 
@@ -68,7 +68,7 @@ namespace BLL.Services
         public async Task ChangeBookingAsync(Booking booking, int oldBookingId)
             => await _bookingRepository.ChangeBookingAsync(booking, oldBookingId);
 
-        public async Task<IReadOnlyCollection<Booking>> FindByConditionAsync(Expression<Func<Booking, bool>> predicat)
+        public async Task<IReadOnlyCollection<Booking>> FindByConditionBookingAsync(Expression<Func<Booking, bool>> predicat)
             => await _bookingRepository.FindByConditionAsync(predicat);
 
 
