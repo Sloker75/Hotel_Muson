@@ -1,6 +1,7 @@
 ﻿@using Domain.Models.ViewModels
 @model DashBoardViewModel
 
+
 <section class="vh-100" style="background-color: #f4f5f7;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -42,9 +43,8 @@
                   </div>
                 </div>
                 <div class="d-flex justify-content-start">
-                  <a href="#!"><i class="fab fa-facebook-f fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-twitter fa-lg me-3"></i></a>
-                  <a href="#!"><i class="fab fa-instagram fa-lg"></i></a>
+                  <a asp-controller="Booking" asp-action="Create" class="nav-link px-2 link-secondary">Create booking</a>
+                  <a asp-controller="Booking" asp-action="Index" class="nav-link px-2 link-secondary">Your booking</a>
                 </div>
               </div>
             </div>

@@ -13,7 +13,7 @@
         <h6 class="card-subtitle mb-2 text-muted">The room has @roomItem.CountRoom beds and is located on the @roomItem.Floor floor</h6>
         @*<a asp-controller="Room" asp-action="Edit" asp-route-id="@roomItem.RoomId" class="card-link">Edit</a>
         <a asp-controller="Room" asp-action="Delete" asp-route-id="@roomItem.RoomId" class="card-link">Delete</a>*@
-            @Html.ActionLink("Etid", "Edit", new {  RoomId=roomItem.RoomId  }) 
+            @Html.ActionLink("Edit", "Edit", new {  RoomId=roomItem.RoomId  }) 
             @Html.ActionLink("Delete", "Delete", new { RoomId = roomItem.RoomId  })
       </div>
     </div>

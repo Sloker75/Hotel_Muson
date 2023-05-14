@@ -25,6 +25,7 @@ namespace Muson.Controllers
             ICollection<Booking> Bookings = (await _userService.FindByConditionBookingAsync(x => x.UserId == user.Id)).ToList();
             var dashboardViewModel = new DashBoardViewModel()
             {
+                UserId = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 EmployeeId = user.EmployeeId,

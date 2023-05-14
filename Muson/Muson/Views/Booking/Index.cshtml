@@ -1,0 +1,17 @@
+﻿@using Domain.Enum
+@using Domain.Models.ViewModels
+@model List<BookingViewModel>
+
+<h1>Booking</h1>
+
+@foreach (var bookingItem in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Room @bookingItem.Room.RoomNumber @bookingItem.Room.TypeRoom</h5>
+            <h6 class="card-subtitle mb-2 text-muted">The room has @bookingItem.Room.CountRoom beds and is located on the @@bookingItem.Room.Floor floor</h6>
+            @Html.ActionLink("Edit", "Edit", new {  BookingId=bookingItem.BookingId  }) 
+            @Html.ActionLink("Delete", "Delete", new { BookingId = bookingItem.BookingId  })
+        </div>
+    </div>
+}

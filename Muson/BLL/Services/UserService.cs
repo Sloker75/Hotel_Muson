@@ -33,6 +33,9 @@ namespace BLL.Services
 
         public async Task DeleteUserAsync(string remUserId)
             => await _userRepository.DeleteUserAsync(remUserId);
+
+        public async Task<IReadOnlyCollection<User>> FindByConditionUserAsync(Expression<Func<User, bool>> predicat)
+            => await _userRepository.FindByConditionAsync(predicat);
         #endregion
 
 
@@ -59,13 +62,28 @@ namespace BLL.Services
         public async Task<IReadOnlyCollection<Booking>> GetAllBookingAsync()
             => await _bookingRepository.GetAllAsync();
 
-        public async Task AddBookingAsync(Booking booking, string userId)
-            => await _bookingRepository.CreateBookingAsync(booking, userId);
+        public async Task AddBookingAsync(BookingViewModel bookingViewModel, string userId)
+        {
+            var booking = new Booking
+            {
+                Id = bookingViewModel.BookingId,
+                DateArrival = bookingViewModel.DateArrival,
+                DateDeparture = bookingViewModel.DateDeparture,
+                Price = bookingViewModel.Price,
+                RoomId = bookingViewModel.Room.Id,
+                Room = bookingViewModel.Room,
+                ServiceId = bookingViewModel.Service.Id,
+                Service = bookingViewModel.Service,
+                User = (await FindByConditionUserAsync(x => x.Id == userId)).FirstOrDefault(),
+                UserId = userId
+            };
+            await _bookingRepository.CreateBookingAsync(booking, userId);
+        }
 
         public async Task RemoveBookingAsync(int remBookingId)
             => await _bookingRepository.DeleteBookingAsync(remBookingId);
 
-        public async Task ChangeBookingAsync(Booking booking, int oldBookingId)
+        public async Task ChangeBookingAsync(BookingViewModel booking, int oldBookingId)
             => await _bookingRepository.ChangeBookingAsync(booking, oldBookingId);
 
         public async Task<IReadOnlyCollection<Booking>> FindByConditionBookingAsync(Expression<Func<Booking, bool>> predicat)

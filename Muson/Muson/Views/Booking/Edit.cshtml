@@ -1,0 +1,71 @@
+﻿@using Domain.Enum
+@using Domain.Models.ViewModels
+@model BookingViewModel
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+  <div class="form-group">
+    <label asp-for="DateArrival">Date Arrival</label>
+    <input asp-for="DateArrival" class="form-control" placeholder="Date Arrival">
+    <span asp-validation-for="DateArrival" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="DateDeparture">Date Departure</label>
+    <input asp-for="DateDeparture" class="form-control" placeholder="Date Departure">
+    <span asp-validation-for="DateDeparture" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Price">Price</label>
+    <input asp-for="Price" class="form-control" placeholder="Prace">
+    <span asp-validation-for="Price" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Room.TypeRoom">TypeRoom</label>
+    <select asp-for="Room.TypeRoom" asp-items="@Html.GetEnumSelectList<TypeRoom>()" class="form-control">
+             <option>--Select--</option>
+    </select>
+    <span asp-validation-for="Room.TypeRoom" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasFridge">Fridge</label>
+        @Html.CheckBoxFor(x => x.Service.hasFridge)
+    <span asp-validation-for="Service.hasFridge" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasTV">TV</label>
+        @Html.CheckBoxFor(x => x.Service.hasTV)
+    <span asp-validation-for="Service.hasTV" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasInternet">Internet</label>
+        @Html.CheckBoxFor(x => x.Service.hasInternet)
+     <span asp-validation-for="Service.hasInternet" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasSmoking">Smoking</label>
+        @Html.CheckBoxFor(x => x.Service.hasSmoking)
+    <span asp-validation-for="Service.hasSmoking" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasAirConditioning">Air Conditioning</label>
+        @Html.CheckBoxFor(x => x.Service.hasAirConditioning)
+    <span asp-validation-for="Service.hasAirConditioning" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasParkingLot">ParkingLot</label>
+        @Html.CheckBoxFor(x => x.Service.hasParkingLot)
+   <span asp-validation-for="Service.hasParkingLot" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasIron">Iron</label>
+        @Html.CheckBoxFor(x => x.Service.hasIron)
+    <span asp-validation-for="Service.hasIron" class="text-danger"></span>
+  </div>
+  <div class="form-group">
+    <label asp-for="Service.hasBabysitter">Babysitter</label>
+        @Html.CheckBoxFor(x => x.Service.hasBabysitter)
+    <span asp-validation-for="Service.hasBabysitter" class="text-danger"></span>
+  </div>
+
+  <input type="hidden" asp-for="BookingId" />
+   <input type="submit" value="Submit" class="btn btn-primary" />
+</form>

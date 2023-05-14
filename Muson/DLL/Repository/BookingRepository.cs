@@ -1,6 +1,7 @@
 ﻿using DLL.Context;
 using DLL.Repository.Interfaces;
 using Domain.Models;
+using Domain.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -13,16 +14,16 @@ namespace DLL.Repository
 
         }
 
-        public async Task ChangeBookingAsync(Booking newBooking, int oldBookingId)
+        public async Task ChangeBookingAsync(BookingViewModel newBooking, int oldBookingId)
         {
             var oldBooking = Entities.Find(oldBookingId);
 
             oldBooking.DateArrival = newBooking.DateArrival;
             oldBooking.DateDeparture = newBooking.DateDeparture;
             oldBooking.Price = newBooking.Price;
-            oldBooking.RoomId = newBooking.RoomId;
+            oldBooking.RoomId = newBooking.Room.Id;
             oldBooking.Room = newBooking.Room;
-            oldBooking.ServiceId = newBooking.ServiceId;
+            oldBooking.ServiceId = newBooking.Service.Id;
             oldBooking.Service = newBooking.Service;
 
             base._musonHotelContext.Entry(oldBooking).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
