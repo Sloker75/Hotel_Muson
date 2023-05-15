@@ -29,11 +29,6 @@ namespace BLL.Services
 
         public async Task<IReadOnlyCollection<Room>> GetAllAsync() => await _roomRepository.GetAllAsync();
 
-        /*public Task<IReadOnlyCollection<Booking>> GetAllBookingsAsync()
-        {
-            throw new NotImplementedException();
-        }*/
-
         public async Task<IReadOnlyCollection<Room>> FindByConditionAsync(Expression<Func<Room, bool>> predicat)
             => await _roomRepository.FindByConditionAsync(predicat);
 

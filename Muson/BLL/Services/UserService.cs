@@ -38,7 +38,6 @@ namespace BLL.Services
             => await _userRepository.FindByConditionAsync(predicat);
         #endregion
 
-
         #region ExtraService
         public async Task AddExtraServiceAsync(ExtraService extraService, string userId)
             => await _extraServiceRepository.CreateExtraServiceAsync(extraService, userId);

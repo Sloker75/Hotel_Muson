@@ -62,11 +62,12 @@ namespace Muson.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(UserRegistrationViewModel userRegVM)
         {
-
             userRegVM.Role = "User";
             if (await _userService.RegistrationAsync(userRegVM)) return RedirectToAction("Login");
             return View();
         }
+
+
 
         public async Task<IActionResult> Logout()
         {

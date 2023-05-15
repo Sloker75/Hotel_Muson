@@ -9,6 +9,7 @@ namespace Muson.Infrastructure
         {
             builder.Services.AddTransient<RoomService>();
             builder.Services.AddTransient<UserService>();
+            builder.Services.AddTransient<EmployeeService>();
         }
     }
 }

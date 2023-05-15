@@ -27,6 +27,9 @@ namespace DLL.Repository
             oldUser.Name = newUser.Name;
             oldUser.Email = newUser.Email;
             oldUser.PhoneNumber = newUser.PhoneNumber;
+            oldUser.UserName = newUser.UserName;
+            oldUser.EmployeeId = newUser.Employee.Id;
+            oldUser.Employee = newUser.Employee;
             oldUser.Bookings = newUser.Bookings;
             oldUser.ExtraServices = newUser.ExtraServices;
 

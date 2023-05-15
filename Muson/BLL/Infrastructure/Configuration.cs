@@ -24,6 +24,7 @@ namespace BLL.Infrastructure
             builder.Services.AddTransient<BookingRepository>();
             builder.Services.AddTransient<ExtraServiceRepository>();
             builder.Services.AddTransient<EmployeeRepository>();
+            builder.Services.AddTransient<WorkScheduleRepository>();
             builder.Services.AddTransient<RoleRepository>();
             builder.Services.AddTransient<UserRepository>();
 
