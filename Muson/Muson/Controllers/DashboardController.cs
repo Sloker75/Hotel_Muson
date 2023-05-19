@@ -11,10 +11,13 @@ namespace Muson.Controllers
     {
         private readonly UserService _userService;
         private readonly UserManager<User> _userManager;
-        public DashboardController(UserService userService, UserManager<User> userManager)
+        private readonly EmployeeService _employeeService;
+        public DashboardController(UserService userService, UserManager<User> userManager,
+            EmployeeService employeeService)
         {
             _userService = userService;
             _userManager = userManager;
+            _employeeService = employeeService;
         }
 
         [Authorize]
@@ -23,13 +26,15 @@ namespace Muson.Controllers
             var user = await _userManager.GetUserAsync(User);
             ICollection<ExtraService> ExtraServices = (await _userService.FindByConditionExtraServiceAsync(x => x.UserId == user.Id)).ToList();
             ICollection<Booking> Bookings = (await _userService.FindByConditionBookingAsync(x => x.UserId == user.Id)).ToList();
+            var Employee = (await _employeeService.FindByConditionEmployeeAsync(x => x.UserId == user.Id)).FirstOrDefault();
             var dashboardViewModel = new DashBoardViewModel()
             {
                 UserId = user.Id,
                 Name = user.Name,
                 Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
                 EmployeeId = user.EmployeeId,
-                Employee = user.Employee,
+                Employee = Employee,
                 ExtraServices = ExtraServices,
                 Bookings = Bookings
             };

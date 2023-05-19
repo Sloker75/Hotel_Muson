@@ -28,6 +28,7 @@ namespace DLL.Repository
             oldUser.Email = newUser.Email;
             oldUser.PhoneNumber = newUser.PhoneNumber;
             oldUser.UserName = newUser.UserName;
+            oldUser.PhoneNumber = newUser.PhoneNumber;
             oldUser.EmployeeId = newUser.Employee.Id;
             oldUser.Employee = newUser.Employee;
             oldUser.Bookings = newUser.Bookings;
@@ -69,6 +70,8 @@ namespace DLL.Repository
                 Name = userRegistrationVM.Name,
                 Email = userRegistrationVM.Email,
                 UserName = userRegistrationVM.UserName,
+                PhoneNumber = userRegistrationVM.PhoneNumber,
+                Employee = userRegistrationVM.Employee,
                 EmailConfirmed = true
             };
             var result = await _userManager.CreateAsync(user, userRegistrationVM.Password);

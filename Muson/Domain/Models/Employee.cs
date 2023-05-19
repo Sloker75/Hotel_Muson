@@ -12,7 +12,7 @@ namespace Domain.Models
         public string Position { get; set; }
         public int Salary { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
         [ForeignKey("Address")]
         public int AddressId { get; set; }

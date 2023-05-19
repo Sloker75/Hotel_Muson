@@ -19,6 +19,9 @@ Muson.Infrastructure.Configuration.ConfigurationService(identityBuilder);
 
 var app = builder.Build();
 
+
+await Seed.SeedUsersAndRolesAsync(app);
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -38,5 +41,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

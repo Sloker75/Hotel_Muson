@@ -67,7 +67,20 @@ namespace Muson.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EmployeeRegistration()
+        {
+            var employeeRegVM = new UserRegistrationViewModel();
+            return View(employeeRegVM);
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> EmployeeRegistration(UserRegistrationViewModel employeeRegVM)
+        {
+            employeeRegVM.Employee.Position = employeeRegVM.Role;
+            if (await _userService.RegistrationAsync(employeeRegVM)) return RedirectToAction("Login");
+            return View();
+        }
 
         public async Task<IActionResult> Logout()
         {
