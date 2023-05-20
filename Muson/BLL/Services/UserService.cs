@@ -6,17 +6,20 @@ using System.Linq.Expressions;
 
 namespace BLL.Services
 {
-    public class UserService : IExtraServiceService, IBookingService, IUserService
+    public class UserService : IExtraServiceService, IBookingService, IUserService, ICommentService
     {
         private readonly ExtraServiceRepository _extraServiceRepository;
         private readonly BookingRepository _bookingRepository;
         private readonly UserRepository _userRepository;
+        private readonly CommentRepository _commentRepository;
 
-        public UserService(UserRepository userRepository, ExtraServiceRepository extraServiceRepository, BookingRepository bookingRepository)
+        public UserService(UserRepository userRepository, ExtraServiceRepository extraServiceRepository,
+            BookingRepository bookingRepository, CommentRepository commentRepository)
         {
             _extraServiceRepository = extraServiceRepository;
             _bookingRepository = bookingRepository;
             _userRepository = userRepository;
+            _commentRepository = commentRepository;
         }
 
         #region User
@@ -87,6 +90,25 @@ namespace BLL.Services
 
         public async Task<IReadOnlyCollection<Booking>> FindByConditionBookingAsync(Expression<Func<Booking, bool>> predicat)
             => await _bookingRepository.FindByConditionAsync(predicat);
+
+        #endregion
+
+        #region Comment
+
+        public async Task<IReadOnlyCollection<Comment>> GetAllCommentsAsync()
+            => await _commentRepository.GetAllAsync();
+
+        public async Task AddCommentAsync(Comment comment, string userId)
+            => await _commentRepository.CreateCommentAsync(comment, userId);
+
+        public async Task AddCommentAnswerAsync(Comment comment, int mainCommentId, string userId)
+            => await _commentRepository.CreateAnswerAsync(comment, mainCommentId, userId);
+
+        public async Task RemoveCommentAsync(int remCommentId)
+            => await _commentRepository.DeleteCommentAsync(remCommentId);
+
+        public async Task ChangeCommentAsync(Comment newComment, int oldCommentId)
+            => await _commentRepository.ChangeCommentAsync(newComment, oldCommentId);
 
 
         #endregion
