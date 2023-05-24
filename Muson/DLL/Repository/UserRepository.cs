@@ -20,19 +20,29 @@ namespace DLL.Repository
             _roleManager = roleManager;
         }
 
-        public async Task ChangeUserAsync(User newUser, string oldUserId)
+        public async Task ChangeUserAsync(UserViewModel newUser, string oldUserEmail)
         {
-            var oldUser = Entities.Find(oldUserId);
+            var oldUser = Entities.FirstOrDefault(x => x.Email == oldUserEmail);
+
+            if(oldUser.Employee.Position != newUser.Employee.Position)
+            {
+                if (!await _roleManager.RoleExistsAsync(newUser.Employee.Position))
+                {
+                    string roleId = Guid.NewGuid().ToString();
+                    await _roleManager.CreateAsync(new AppRole(newUser.Employee.Position, roleId));
+                }
+                await _userManager.RemoveFromRoleAsync(oldUser, (await _userManager.GetRolesAsync(oldUser)).FirstOrDefault());
+                await _userManager.AddToRoleAsync(oldUser, newUser.Employee.Position);
+            }
 
             oldUser.Name = newUser.Name;
+            oldUser.Surname = newUser.Surname;
             oldUser.Email = newUser.Email;
             oldUser.PhoneNumber = newUser.PhoneNumber;
-            oldUser.UserName = newUser.UserName;
+            oldUser.UserName = newUser.Email;
             oldUser.PhoneNumber = newUser.PhoneNumber;
             oldUser.EmployeeId = newUser.Employee.Id;
             oldUser.Employee = newUser.Employee;
-            oldUser.Bookings = newUser.Bookings;
-            oldUser.ExtraServices = newUser.ExtraServices;
 
             base._musonHotelContext.Entry(oldUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             await base._musonHotelContext.SaveChangesAsync();
@@ -44,20 +54,22 @@ namespace DLL.Repository
         }
 
         public async Task ChangeUserPasswordAsync(User user, string currentPassword, string newPassword)
-        {
-            await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
-        }
+            => await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
         
 
         public async override Task<IReadOnlyCollection<User>> FindByConditionAsync(Expression<Func<User, bool>> predicat)
              => await this.Entities.Include(x => x.Bookings).ThenInclude(x => x.Room)
             .Include(x => x.Bookings).ThenInclude(x => x.Service)
-            .Include(x => x.Employee).Include(x => x.ExtraServices).Where(predicat).ToListAsync().ConfigureAwait(false);
+            .Include(x => x.Employee).ThenInclude(x => x.Address)
+            .Include(x => x.Employee).ThenInclude(x => x.WorkSchedules)
+            .Include(x => x.ExtraServices).Where(predicat).ToListAsync().ConfigureAwait(false);
 
         public async override Task<IReadOnlyCollection<User>> GetAllAsync()
             => await this.Entities.Include(x => x.Bookings).ThenInclude(x => x.Room)
             .Include(x => x.Bookings).ThenInclude(x => x.Service)
-            .Include(x => x.Employee).Include(x => x.ExtraServices).ToListAsync().ConfigureAwait(false);
+            .Include(x => x.Employee).ThenInclude(x => x.Address)
+            .Include(x => x.Employee).ThenInclude(x => x.WorkSchedules)
+            .Include(x => x.ExtraServices).ToListAsync().ConfigureAwait(false);
 
 
         public async Task<bool> RegistrationAsync(UserRegistrationViewModel userRegistrationVM)
@@ -68,8 +80,9 @@ namespace DLL.Repository
             {
                 SecurityStamp = Guid.NewGuid().ToString(),
                 Name = userRegistrationVM.Name,
+                Surname = userRegistrationVM.Surname,
                 Email = userRegistrationVM.Email,
-                UserName = userRegistrationVM.UserName,
+                UserName = userRegistrationVM.Email,
                 PhoneNumber = userRegistrationVM.PhoneNumber,
                 Employee = userRegistrationVM.Employee,
                 EmailConfirmed = true

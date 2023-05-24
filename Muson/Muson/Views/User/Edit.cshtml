@@ -1,0 +1,58 @@
+﻿@using Domain.Models.ViewModels
+@model UserViewModel
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" class="form-control" placeholder="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname">Surname</label>
+        <input asp-for="Surname" class="form-control" placeholder="Surname">
+        <span asp-validation-for="Surname" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" class="form-control" placeholder="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number">
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    @if (!User.IsInRole("User")) {
+        <div class="form-group">
+        <label asp-for="Employee.Salary">Salary</label>
+        <input asp-for="Employee.Salary" class="form-control" placeholder="Salary">
+        <span asp-validation-for="Employee.Salary" class="text-danger"></span>
+        </div>
+        <label asp-for="Employee.Position">Position</label>
+            <select asp-for="Employee.Position" class="form-control">
+             <option>Employee.Position</option>
+             @if (User.IsInRole("Admin")){
+                 <option>Meneger</option>
+             }
+             <option>Receptionist</option>
+        </select>
+        <span asp-validation-for="Employee.Position" class="text-danger"></span>
+        <div class="form-group">
+        <label asp-for="Employee.Address.Country">Country</label>
+        <input asp-for="Employee.Address.Country" class="form-control" placeholder="Country">
+        <span asp-validation-for="Employee.Address.Country" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="Employee.Address.City">Floor</label>
+        <input asp-for="Employee.Address.City" class="form-control" placeholder="City">
+        <span asp-validation-for="Employee.Address.City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+        <label asp-for="Employee.Address.Street">Floor</label>
+        <input asp-for="Employee.Address.Street" class="form-control" placeholder="Street">
+        <span asp-validation-for="Employee.Address.Street" class="text-danger"></span>
+        </div>
+    }
+    <input type="hidden" asp-for="Email" />
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</form>

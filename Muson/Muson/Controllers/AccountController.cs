@@ -42,7 +42,7 @@ namespace Muson.Controllers
                 var userRoles = await _userManager.GetRolesAsync(user);
                 var authClaims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, user.UserName)
+                    new Claim(ClaimTypes.Email, user.Email)
                 };
                 foreach (var userRole in userRoles)
                     authClaims.Add(new Claim(ClaimTypes.Role, userRole));
@@ -64,21 +64,6 @@ namespace Muson.Controllers
         {
             userRegVM.Role = "User";
             if (await _userService.RegistrationAsync(userRegVM)) return RedirectToAction("Login");
-            return View();
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> EmployeeRegistration()
-        {
-            var employeeRegVM = new UserRegistrationViewModel();
-            return View(employeeRegVM);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> EmployeeRegistration(UserRegistrationViewModel employeeRegVM)
-        {
-            employeeRegVM.Employee.Position = employeeRegVM.Role;
-            if (await _userService.RegistrationAsync(employeeRegVM)) return RedirectToAction("Login");
             return View();
         }
 

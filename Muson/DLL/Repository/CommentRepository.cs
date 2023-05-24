@@ -31,7 +31,6 @@ namespace DLL.Repository
         {
             User user = _musonHotelContext.Users.Find(userId);
             var mainComment = Entities.Find(mainCommentId);
-            comment.UserId = user.Id;
             comment.User = user;
 
             mainComment.Comments.Add(comment);

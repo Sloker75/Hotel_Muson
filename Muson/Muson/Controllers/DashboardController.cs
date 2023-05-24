@@ -31,6 +31,7 @@ namespace Muson.Controllers
             {
                 UserId = user.Id,
                 Name = user.Name,
+                Surname = user.Surname,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 EmployeeId = user.EmployeeId,

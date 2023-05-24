@@ -78,7 +78,6 @@ namespace Muson.Controllers
             {
                 bookingViewModel.Room = (await _roomService.FindByConditionAsync(x => x.TypeRoom == bookingViewModel.Room.TypeRoom)).FirstOrDefault();
                 await _userService.ChangeBookingAsync(bookingViewModel, BookingId);
-                var user = await _signInManager.UserManager.GetUserAsync(User);
                 return RedirectToAction("Index");
             }
             return RedirectToRoute(new { Controller = "Home", Action = "Index" });

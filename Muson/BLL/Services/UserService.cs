@@ -25,8 +25,8 @@ namespace BLL.Services
         #region User
         public async Task<IReadOnlyCollection<User>> GetAllUserAsync()
             => await _userRepository.GetAllAsync();
-        public async Task ChangeUserAsync(User newUser, string oldUserId)
-            => await _userRepository.ChangeUserAsync(newUser, oldUserId);
+        public async Task ChangeUserAsync(UserViewModel newUser, string oldUserEmail)
+            => await _userRepository.ChangeUserAsync(newUser, oldUserEmail);
 
         public async Task ChangeUserPasswordAsync(User user, string currentPassword, string newPassword)
             => await _userRepository.ChangeUserPasswordAsync(user, currentPassword, newPassword);

@@ -1,11 +1,6 @@
 ﻿@using Domain.Models.ViewModels
 @model DashBoardViewModel
 
-
-    @*<a asp-controller="Booking" asp-action="Create" class="nav-link px-2 link-secondary">Create booking</a>
-    <a asp-controller="Booking" asp-action="Index" class="nav-link px-2 link-secondary">Your booking</a>
-*@
-
 <section style="background-color: #eee;">
   <div class="container py-5">
     <div class="row">
@@ -44,11 +39,16 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <a asp-controller="Account" asp-action="EmployeeRegistration" class="nav-link px-2 link-secondary">Create a new worker</a>
+                @if (User.IsInRole("Admin")){
+                    <a asp-controller="User" asp-action="CreateEmployee" class="nav-link px-2 link-secondary">Create a new worker</a>
+                }
+                else{
+                    <a asp-controller="Booking" asp-action="Create" class="nav-link px-2 link-secondary">Create a new booking</a>
+                }
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <a asp-controller="" asp-action="Index" class="nav-link px-2 link-secondary">Your booking</a>
+                <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" class="nav-link px-2 link-secondary">Edit</a>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
