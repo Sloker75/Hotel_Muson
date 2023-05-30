@@ -17,9 +17,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Muson.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    @*<header>
         <div class="container">
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
       <div class="col-md-3 mb-2 mb-md-0">
@@ -42,15 +45,73 @@
           </div>
       }
       else{
-          
+
           <div class="col-md-3 text-end">
                   <a asp-controller="Account" class="btn btn-outline-primary me-2" asp-action="Logout" class="nav-link px-2 link-secondary">Logout</a>
                   <a asp-controller="Dashboard" class="btn btn-primary" asp-action="Index" class="nav-link px-2 link-secondary">My page</a>
           </div>
       }
-      
+
     </header>
   </div>
+    </header>*@
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+        <img src="~/image/LogoMuson.png"  asp-append-version="true"/> 
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto pe-5">
+        <li class="nav-item">
+          <a style="color: #858484;" class="nav-link" href="#">Головна</a>
+        </li>
+         <li class="nav-item">
+          <a style="color: #858484;" class="nav-link" href="#">Бронювання</a>
+        </li>
+         <li class="nav-item">
+          <a style="color: #858484;" class="nav-link" href="#">Послуги</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #858484;" class="nav-link" href="#">Дозвілля</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #858484;" class="nav-link" href="#">Контакти</a>
+        </li>
+        <li class="nav-item">
+          <a style="color: #858484;" class="nav-link" href="#">Про нас</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+         <li class="nav-item dropdown">
+          <a style="color:#fff;" class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <i class="fa-solid fa-circle-user fa-2xl" style="color: #64876f;"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Мій Аккаунт</a></li>
+            <li><a class="dropdown-item" href="#">Повідомлення</a></li>
+            <li><a class="dropdown-item" href="#">Программа лояльності Muson</a></li>
+            <li><a class="dropdown-item" href="#">Мій Розклад роботи</a></li>
+            <li><a class="dropdown-item" href="#">Заявка на бронювання</a></li>
+            <li><a class="dropdown-item" href="#">Відгуки</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Сповіщення</a></li>
+            <li><a class="dropdown-item" href="#">Довідка</a></li>
+            <li><a class="dropdown-item" href="#">Вийти</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -58,14 +119,70 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer style="line-height:unset;" class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - Muson - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div style="margin-top: 30px;" class="row">
+                <div style="padding-left:60px;" class="col-md-8 col-5">
+                   <img src="~/image/LogoMusonFooter.png"  asp-append-version="true"/> 
+                </div>
+                <div class="col-md-1 col-5">
+                    <h5>Підтримуючі платіжні засоби</h5>
+                </div>
+            </div>
+            <div style="margin-top: 60px;" class="row">
+                <div class="col-md-2 col-4 text-center">
+                    <h5>Дозвілля</h5>
+                    <ul class="list-unstyled">
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-4 text-center">
+                    <h5>Дозвілля</h5>
+                    <ul class="list-unstyled">
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-4 text-center">
+                    <h5>Дозвілля</h5>
+                    <ul class="list-unstyled">
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                    </ul>
+                </div><div class="col-md-3 col-4 text-center">
+                    <h5>Слідкуйте за нами</h5>
+                    <div class="footer-icons">
+                        <ul class="list-unstyled">
+                            <li><i class="fa-brands fa-instagram" style="color: #ffffff;"></i> Instagram</li>
+                            <li><i class="fa-brands fa-facebook" style="color: #ffffff;"></i> FaceBook</li>
+                            <li><i class="fa-brands fa-telegram" style="color: #ffffff;"></i> Telegram</li>
+                        </ul>
+                    </div>
+                </div><div class="col-md-3 col-4 text-center">
+                    <h5>Контакти</h5>
+                    <ul class="list-unstyled">
+                        <li>+380(501)13 28 28</li>
+                        <li>+380(245)97 97 57</li>
+                        <li>+380(175)22 55 64</li>
+                        <br/>
+                        <li>Muson@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="color: #FFFFFF;" class="text-center">&copy; 2023 - Muson - <a style="style="color: #FFFFFF; text-decoration:none;" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/74b6d090b3.js" crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
