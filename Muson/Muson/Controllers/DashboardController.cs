@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Muson.Controllers
 {
+    [Authorize]
     public class DashboardController : Controller
     {
         private readonly UserService _userService;
@@ -20,7 +21,6 @@ namespace Muson.Controllers
             _employeeService = employeeService;
         }
 
-        [Authorize]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
@@ -38,6 +38,23 @@ namespace Muson.Controllers
                 Employee = Employee,
                 ExtraServices = ExtraServices,
                 Bookings = Bookings
+            };
+            return View(dashboardViewModel);
+        }
+
+        public async Task<IActionResult> PaymentData()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var Employee = (await _employeeService.FindByConditionEmployeeAsync(x => x.UserId == user.Id)).FirstOrDefault();
+            var dashboardViewModel = new DashBoardViewModel()
+            {
+                UserId = user.Id,
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                EmployeeId = user.EmployeeId,
+                Employee = Employee,
             };
             return View(dashboardViewModel);
         }

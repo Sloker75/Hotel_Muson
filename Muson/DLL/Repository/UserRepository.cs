@@ -23,26 +23,39 @@ namespace DLL.Repository
         public async Task ChangeUserAsync(UserViewModel newUser, string oldUserEmail)
         {
             var oldUser = Entities.FirstOrDefault(x => x.Email == oldUserEmail);
-
-            if(oldUser.Employee.Position != newUser.Employee.Position)
+            var userRole = await _userManager.GetRolesAsync(oldUser);
+            if(userRole.First() == "User")
             {
-                if (!await _roleManager.RoleExistsAsync(newUser.Employee.Position))
-                {
-                    string roleId = Guid.NewGuid().ToString();
-                    await _roleManager.CreateAsync(new AppRole(newUser.Employee.Position, roleId));
-                }
-                await _userManager.RemoveFromRoleAsync(oldUser, (await _userManager.GetRolesAsync(oldUser)).FirstOrDefault());
-                await _userManager.AddToRoleAsync(oldUser, newUser.Employee.Position);
+                oldUser.Name = newUser.Name;
+                oldUser.Surname = newUser.Surname;
+                oldUser.Email = newUser.Email;
+                oldUser.PhoneNumber = newUser.PhoneNumber;
+                oldUser.UserName = newUser.Email;
+                oldUser.PhoneNumber = newUser.PhoneNumber;
             }
+            else
+            {
+                if (oldUser.Employee.Position != newUser.Employee.Position)
+                {
+                    if (!await _roleManager.RoleExistsAsync(newUser.Employee.Position))
+                    {
+                        string roleId = Guid.NewGuid().ToString();
+                        await _roleManager.CreateAsync(new AppRole(newUser.Employee.Position, roleId));
+                    }
+                    await _userManager.RemoveFromRoleAsync(oldUser, (await _userManager.GetRolesAsync(oldUser)).FirstOrDefault());
+                    await _userManager.AddToRoleAsync(oldUser, newUser.Employee.Position);
+                }
 
-            oldUser.Name = newUser.Name;
-            oldUser.Surname = newUser.Surname;
-            oldUser.Email = newUser.Email;
-            oldUser.PhoneNumber = newUser.PhoneNumber;
-            oldUser.UserName = newUser.Email;
-            oldUser.PhoneNumber = newUser.PhoneNumber;
-            oldUser.EmployeeId = newUser.Employee.Id;
-            oldUser.Employee = newUser.Employee;
+
+                oldUser.Name = newUser.Name;
+                oldUser.Surname = newUser.Surname;
+                oldUser.Email = newUser.Email;
+                oldUser.PhoneNumber = newUser.PhoneNumber;
+                oldUser.UserName = newUser.Email;
+                oldUser.PhoneNumber = newUser.PhoneNumber;
+                oldUser.EmployeeId = newUser.Employee.Id;
+                oldUser.Employee = newUser.Employee;
+            }  
 
             base._musonHotelContext.Entry(oldUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             await base._musonHotelContext.SaveChangesAsync();

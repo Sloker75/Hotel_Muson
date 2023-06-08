@@ -1,0 +1,142 @@
+﻿@using Domain.Models.ViewModels
+@model DashBoardViewModel
+
+<style>
+    .main-link{
+        background-color: #D9D9D980; 
+        border-left: 1px solid #64876F!important;
+        border-width: 5px!important;
+    }
+
+    .data-link{
+        color: #64876F;
+    }
+
+    .data-link:hover{
+        color: #64876F;
+        background-color: #D9D9D980; 
+    }  
+</style>
+
+<section>
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <nav class="rounded-3 mb-4">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Головна </a></li>
+            <li class="breadcrumb-item"><a asp-controller="Dashboard" asp-action="Index">Особисті дані</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Платіжні дані</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <h3 class="text-center">Платіжні дані</h3>
+    <div class="row mt-5">
+        <div class="col-sm-3 ">
+            <figure class="text-center">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid border border-2 border-primary" style="width: 100px;">
+                <figcaption class="figure-caption">
+                    <h4 style="color: #201E1E;" class="mt-4 ">@Model.Name @Model.Surname</h4>
+                        @if (!User.IsInRole("User"))
+                        {
+                            <p style="font-size: 14px; color: #858484;">@Model.Employee.Position</p>
+                        }
+                </figcaption>
+            </figure> 
+            <div>
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item">
+                        <a asp-controller="Dashboard" asp-action="Index" style="color: #64876F;" class="nav-link">Особисті дані</a>
+                    </li>
+                        @if (!User.IsInRole("User"))
+                        {
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Розклад працівніків</a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Облік вільних номерів </a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Послуги для клієнтів </a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Загальні параметри </a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Модерація відгуків </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Вхід та Безпека</a>
+                            </li>
+                            <li class="main-link nav-item mt-2">
+                                <a asp-controller="Dashboard" asp-action="PaymentData" class="data-link nav-link">Платіжні дані</a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Сповіщення</a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Конфіденційність</a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Загальні параметри </a>
+                            </li>
+                            <li class="nav-item mt-2">
+                                <a class="data-link nav-link" href="#">Мої відгуки</a>
+                            </li>
+                        }
+                </ul>        
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row border-bottom border-3">
+                <div class="col-5 pb-3">Ваші платіжні карти</div>
+                <div class="col-3 text-center pb-3"></div>
+                <div class="col-3 text-lg-end pb-3">
+                    <a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#PayMentModal" style="color: #64876F;" class="nav-link px-2 link-secondary">Добавити карту</a>
+                    <div class="modal fade" id="PayMentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Додайте дані картки</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input style="height: 50px;" class="form-control rounded-pill mt-3" placeholder="Ім'я">
+                                        </div>
+                                        <div class="col-6">
+                                            <input style="height: 50px;" class="form-control rounded-pill mt-3" placeholder="Прізвище">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input style="height: 50px;" class="form-control rounded-pill mt-3" placeholder="Номер карти">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input style="height: 50px;" class="form-control rounded-pill mt-3" placeholder="Термін дії">
+                                        </div>
+                                        <div class="col-6">
+                                            <input style="height: 50px;" class="form-control rounded-pill mt-3" placeholder="CVV">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="justify-content: center;" class="modal-footer">
+                                    <a style="background-color: #fff; color: #CBBAA9; font-size: 18px;" asp-controller="Dashboard" asp-action="PaymentData" class="data-link nav-link">Добавити картку</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

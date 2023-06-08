@@ -54,10 +54,10 @@ namespace Muson.Controllers
         public async Task<IActionResult> Edit(UserViewModel userViewModel, string Email)
         {
             var user = (await _userService.FindByConditionUserAsync(x => x.Email == Email)).FirstOrDefault();
-            if (userViewModel != null && Email != null && user == null)
+            if (userViewModel != null && Email != null && user != null)
             {
                 await _userService.ChangeUserAsync(userViewModel, Email);
-                return RedirectToAction("Index");
+                return RedirectToRoute(new { Controller = "Dashboard", Action = "Index" });
             }
             return RedirectToRoute(new { Controller = "Home", Action = "Index" });
         }

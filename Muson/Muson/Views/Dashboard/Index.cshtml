@@ -4,8 +4,8 @@
 <style>
     .main-link{
         background-color: #D9D9D980; 
-        opacity: 50%; 
-        border-color:#64876F;
+        border-left: 1px solid #64876F!important;
+        border-width: 5px!important;
     }
 
     .data-link{
@@ -24,7 +24,7 @@
       <div class="col">
         <nav class="rounded-3 mb-4">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="#">Головна <i class="fa-solid fa-angle-right fa-xs" style="color: #858484;"></i></a></li>
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Головна </a></li>
             <li class="breadcrumb-item active" aria-current="page">Мій аккаунт</li>
           </ol>
         </nav>
@@ -35,32 +35,58 @@
         <div class="col-sm-3 ">
             <figure class="text-center">
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-              class="rounded-circle img-fluid" style="width: 100px;">
+              class="rounded-circle img-fluid border border-2 border-primary" style="width: 100px;">
                 <figcaption class="figure-caption">
                     <h4 style="color: #201E1E;" class="mt-4 ">@Model.Name @Model.Surname</h4>
-                    <p style="font-size: 14px; color: #858484;">@Model.Employee.Position</p>
+                    @if (!User.IsInRole("User")){
+                        <p style="font-size: 14px; color: #858484;">@Model.Employee.Position</p>
+                    }
                 </figcaption>
             </figure> 
             <div>
                 <ul class="navbar-nav ms-auto text-center">
-                    <li class="main-link nav-item border-start border-5">
+                    <li class="main-link nav-item">
                         <a asp-controller="Dashboard" asp-action="Index" style="color: #64876F;" class="nav-link">Особисті дані</a>
                     </li>
-                    <li class="nav-item mt-2">
-                        <a class="data-link nav-link" href="#">Розклад працівніків</a>
-                    </li>
-                    <li class="nav-item mt-2">
-                        <a class="data-link nav-link" href="#">Облік вільних номерів </a>
-                    </li>
-                    <li class="nav-item mt-2">
-                        <a class="data-link nav-link" href="#">Послуги для клієнтів </a>
-                    </li>
-                    <li class="nav-item mt-2">
-                        <a class="data-link nav-link" href="#">Загальні параметри </a>
-                    </li>
-                    <li class="nav-item mt-2">
-                        <a class="data-link nav-link" href="#">Модерація відгуків </a>
-                    </li>
+                    @if (!User.IsInRole("User"))
+                    {
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Розклад працівніків</a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Облік вільних номерів </a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Послуги для клієнтів </a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Загальні параметри </a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Модерація відгуків </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Вхід та Безпека</a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a asp-controller="Dashboard" asp-action="PaymentData" class="data-link nav-link">Платіжні дані</a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Сповіщення</a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Конфіденційність</a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Загальні параметри </a>
+                        </li>
+                        <li class="nav-item mt-2">
+                            <a class="data-link nav-link" href="#">Мої відгуки</a>
+                        </li>
+                    }
                 </ul>        
             </div>
         </div>
@@ -93,37 +119,31 @@
                 </div>
             </div>
             @*add birthday*@
-            <div class="row mt-4 border-bottom border-3">
-                <div class="col-5 pb-3">Ваша країна</div>
-                <div class="col-3 text-center pb-3">@Model.Employee.Address.Country</div>
-                <div class="col-3 text-lg-end pb-3">
-                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+            @if (!User.IsInRole("User")) 
+            {
+                <div class="row mt-4 border-bottom border-3">
+                    <div class="col-5 pb-3">Ваша країна</div>
+                    <div class="col-3 text-center pb-3">@Model.Employee.Address.Country</div>
+                    <div class="col-3 text-lg-end pb-3">
+                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-4 border-bottom border-3">
-                <div class="col-5 pb-3">Ваша адреса</div>
-                <div class="col-3 text-center pb-3">@Model.Employee.Address.Street, @Model.Employee.Address.City</div>
-                <div class="col-3 text-lg-end pb-3">
-                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                <div class="row mt-4 border-bottom border-3">
+                    <div class="col-5 pb-3">Ваша адреса</div>
+                    <div class="col-3 text-center pb-3">@Model.Employee.Address.Street, @Model.Employee.Address.City</div>
+                    <div class="col-3 text-lg-end pb-3">
+                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-4 border-bottom border-3">
-                <div class="col-5 pb-3">Ваша зарплата</div>
-                <div class="col-3 text-center pb-3">@Model.Employee.Salary UAH</div>
-                <div class="col-3 text-lg-end pb-3">
-                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                <div class="row mt-4 border-bottom border-3">
+                    <div class="col-5 pb-3">Ваша зарплата</div>
+                    <div class="col-3 text-center pb-3">@Model.Employee.Salary UAH</div>
+                    <div class="col-3 text-lg-end pb-3">
+                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 
 </section>
-
-@*@if (User.IsInRole("Admin"))
-{
-    <a asp-controller="User" asp-action="CreateEmployee" class="nav-link px-2 link-secondary">Create a new worker</a>
-}
-else
-{
-    <a asp-controller="Booking" asp-action="Create" class="nav-link px-2 link-secondary">Create a new booking</a>
-}*@
