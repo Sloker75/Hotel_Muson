@@ -68,4 +68,13 @@ a:hover {
 .footer a, .footer li{
     color: #FFFFFF;
 }
+
+.text-header {
+    color: #fff;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+}
 /*Footer*/
+

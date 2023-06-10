@@ -20,6 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     @*<header>
@@ -71,13 +72,7 @@
           <a asp-controller="Home" asp-action="Index" style="color: #858484;" class="nav-link">Головна</a>
         </li>
          <li class="nav-item">
-          <a style="color: #858484;" class="nav-link" href="#">Бронювання</a>
-        </li>
-         <li class="nav-item">
-          <a style="color: #858484;" class="nav-link" href="#">Послуги</a>
-        </li>
-        <li class="nav-item">
-          <a style="color: #858484;" class="nav-link" href="#">Дозвілля</a>
+          <a asp-controller="Booking" asp-action="Index" style="color: #858484;" class="nav-link">Бронювання</a>
         </li>
         <li class="nav-item">
           <a style="color: #858484;" class="nav-link" href="#">Контакти</a>
@@ -95,19 +90,64 @@
           <ul class="dropdown-menu">
             
             @if (SignInManager.IsSignedIn(User)){
-                <li class="dropdown-item">Name</li>
-                <li class="dropdown-item">Role</li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a asp-controller="Dashboard" asp-action="Index" class="dropdown-item"><i class="fa-regular fa-user" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Мій Аккаунт</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-regular fa-message" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Повідомлення</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-regular fa-heart" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Программа лояльності Muson</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Мій Розклад роботи</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-regular fa-bookmark" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Заявка на бронювання</a></li>
-                <li><a class="dropdown-item" href="#"><i class="fa-regular fa-comments" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Відгуки</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Сповіщення</a></li>
-                <li><a class="dropdown-item" href="#">Довідка</a></li>
-                <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item"><i class="fa-solid fa-right-from-bracket" style="color: #EA1A1A;"></i>&nbsp;&nbsp;&nbsp;Вийти</a></li>
+                @if (User.IsInRole("User")){
+                    <li style="color: #201E1E;" class="dropdown-item text-header">@currentUser.Name @currentUser.Surname</li>
+                    <li style="color: #858484;" class="dropdown-item">Клієнт</li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Dashboard" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-user" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Мій Аккаунт
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-message" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Повідомлення
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-solid fa-list-check" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Мої бронювання
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-comments" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Відгуки
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-bell" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Сповіщення
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-solid fa-circle-exclamation" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Довідка
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Account" asp-action="Logout" class="dropdown-item">
+                            <span><i class="fa-solid fa-right-from-bracket" style="color: #EA1A1A;"></i></span>&nbsp;&nbsp;&nbsp;Вийти
+                        </a>
+                    </li>
+                }
+                else{
+                    <li class="dropdown-item">Name</li>
+                        <li class="dropdown-item">Role</li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a asp-controller="Dashboard" asp-action="Index" class="dropdown-item"><i class="fa-regular fa-user" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Мій Аккаунт</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-message" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Повідомлення</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-heart" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Программа лояльності Muson</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Мій Розклад роботи</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-bookmark" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Заявка на бронювання</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-comments" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Відгуки</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Сповіщення</a></li>
+                        <li><a class="dropdown-item" href="#">Довідка</a></li>
+                        <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item"><i class="fa-solid fa-right-from-bracket" style="color: #EA1A1A;"></i>&nbsp;&nbsp;&nbsp;Вийти</a></li>
+
+                }
+                 
             }
             else{
                 <li><a asp-controller="Account" asp-action="Login" class="dropdown-item"><i class="fa-solid fa-right-to-bracket" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Логін</a></li>
@@ -120,7 +160,7 @@
   </div>
 </nav>
     </header>
-    <div style="padding-bottom: 350px;" class="container">
+    <div style="padding-bottom: 400px;" class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -129,61 +169,82 @@
     <footer style="line-height:unset;" class="border-top footer text-muted">
         <div class="container">
             <div style="margin-top: 30px;" class="row">
-                <div style="padding-left:60px;" class="col-md-8 col-5">
+                <div style="padding-left:60px;" class="col-6">
                    <img src="~/image/LogoMusonFooter.png"  asp-append-version="true"/> 
                 </div>
-                <div class="col-md-1 col-5">
-                    <h5>Підтримуючі платіжні засоби</h5>
+                <div class="col-6 text-lg-end">
+                    <p class="text-header">Підтримуючі платіжні засоби</p>
+                    <div>
+                        <span><i class="fa-brands fa-cc-visa fa-2xl mx-1" style="color: #fff;"></i></span>
+                        <span><i class="fa-brands fa-cc-mastercard fa-2xl mx-1" style="color: #fff;"></i></span>
+                        <span><i class="fa-brands fa-cc-paypal fa-2xl mx-1" style="color: #fff;"></i></span>
+                        <span><i class="fa-brands fa-apple-pay fa-2xl mx-1" style="color: #fff;"></i></span>
+                        <span><i class="fa-brands fa-google-pay fa-2xl mx-1" style="color: #fff;"></i></span>
+                    </div>
                 </div>
             </div>
             <div style="margin-top: 60px;" class="row">
-                <div class="col-md-2 col-4 text-center">
-                    <h5>Дозвілля</h5>
+                <div class="col-3 text-center">
+                    <p class="text-header">Дозвілля</p>
                     <ul class="list-unstyled">
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li><p>Майданчик</p></li>
+                        <li><p>Трекінг</p></li>
+                        <li><p>Спорт</p></li>
+                        <li><p>Банкет</p></li>
+                        <li><p>Ресторан</p></li>
                     </ul>
                 </div>
-                <div class="col-md-2 col-4 text-center">
-                    <h5>Дозвілля</h5>
+                <div class="col-3 text-center">
+                    <p class="text-header">Номери</p>
                     <ul class="list-unstyled">
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" style="color: #FFFFFF; text-decoration:none;">
+                                <p>Стандартий</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" style="color: #FFFFFF; text-decoration:none;">
+                                <p>Напівлюкс</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" style="color: #FFFFFF; text-decoration:none;">
+                                <p>Люкс</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" style="color: #FFFFFF; text-decoration:none;">
+                                <p>Бізнес</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index" style="color: #FFFFFF; text-decoration:none;">
+                                <p>Президенський</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
-                <div class="col-md-2 col-4 text-center">
-                    <h5>Дозвілля</h5>
-                    <ul class="list-unstyled">
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF; text-decoration:none;" href="#">Home</a></li>
-                    </ul>
-                </div><div class="col-md-3 col-4 text-center">
-                    <h5>Слідкуйте за нами</h5>
+                <div class="col-3 text-center">
+                    <p class="text-header">Слідкуйте за нами</p>
                     <div class="footer-icons">
                         <ul class="list-unstyled">
                             <li><i class="fa-brands fa-instagram" style="color: #ffffff;"></i> Instagram</li>
-                            <li><i class="fa-brands fa-facebook" style="color: #ffffff;"></i> FaceBook</li>
-                            <li><i class="fa-brands fa-telegram" style="color: #ffffff;"></i> Telegram</li>
+                            <li class="mt-2"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i> FaceBook</li>
+                            <li class="mt-2"><i class="fa-brands fa-telegram" style="color: #ffffff;"></i> Telegram</li>
                         </ul>
                     </div>
-                </div><div class="col-md-3 col-4 text-center">
-                    <h5>Контакти</h5>
+                </div>
+                <div class="col-3 text-center">
+                    <p class="text-header">Контакти</p>
                     <ul class="list-unstyled">
                         <li>+380(501)13 28 28</li>
-                        <li>+380(245)97 97 57</li>
-                        <li>+380(175)22 55 64</li>
-                        <br/>
-                        <li>Muson@gmail.com</li>
+                        <li class="mt-2">+380(245)97 97 57</li>
+                        <li class="mt-2">+380(175)22 55 64</li>
+                        <li class="mt-3">Muson@gmail.com</li>
                     </ul>
                 </div>
             </div>
-            <p style="color: #FFFFFF;" class="text-center">&copy; 2023 - Muson - <a style="style="color: #FFFFFF; text-decoration:none;" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
+            <p style="font-size: 14px;" class="text-center text-header mt-4">Copyrights © Muson 2023. Усі права захищені.</p>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

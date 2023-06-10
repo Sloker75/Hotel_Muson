@@ -24,7 +24,7 @@ namespace Muson.Controllers
 
         public async Task<IActionResult> Index()
         {
-            string userId = (await _signInManager.UserManager.GetUserAsync(User)).Id;
+            /*string userId = (await _signInManager.UserManager.GetUserAsync(User)).Id;
             var user = (await _userService.FindByConditionUserAsync(x => x.Id == userId)).FirstOrDefault();
             bookingViewModels = user.Bookings.Select(x => new BookingViewModel
             {
@@ -37,7 +37,8 @@ namespace Muson.Controllers
                 User = x.User
 
             }).ToList();
-            return View(bookingViewModels);
+            return View(bookingViewModels);*/
+            return View();
         }
 
         [HttpGet]

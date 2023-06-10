@@ -4,6 +4,7 @@ using Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 
 namespace Muson.Controllers
 {
@@ -63,6 +64,10 @@ namespace Muson.Controllers
         public async Task<IActionResult> Registration(UserRegistrationViewModel userRegVM)
         {
             userRegVM.Role = "User";
+            bool isPasswordValid = Regex.IsMatch(userRegVM.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$");
+            bool isEmailValid = Regex.IsMatch(userRegVM.Email, @"^[a-zA-Z0-9_.+-]+@gmail\.com$");
+            if (userRegVM.Password != userRegVM.ConfirmPassword || !isPasswordValid) return View();
+            if (!isEmailValid) return View();
             if (await _userService.RegistrationAsync(userRegVM)) return RedirectToAction("Login");
             return View();
         }

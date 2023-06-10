@@ -11,6 +11,8 @@ namespace Domain.Models
         public int RoomNumber { get; set; }
         public int CountRoom { get; set; }
         public int Floor { get; set; }
+        //shortdesc
+        //longdesc
         public TypeRoom TypeRoom { get; set; }
         public RoomStatus Status { get; set; }
         public ICollection<Booking>? Bookings { get; set; }
