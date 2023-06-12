@@ -31,30 +31,19 @@ namespace DLL.Repository
                 oldUser.Email = newUser.Email;
                 oldUser.PhoneNumber = newUser.PhoneNumber;
                 oldUser.UserName = newUser.Email;
-                oldUser.PhoneNumber = newUser.PhoneNumber;
             }
             else
             {
-                if (oldUser.Employee.Position != newUser.Employee.Position)
-                {
-                    if (!await _roleManager.RoleExistsAsync(newUser.Employee.Position))
-                    {
-                        string roleId = Guid.NewGuid().ToString();
-                        await _roleManager.CreateAsync(new AppRole(newUser.Employee.Position, roleId));
-                    }
-                    await _userManager.RemoveFromRoleAsync(oldUser, (await _userManager.GetRolesAsync(oldUser)).FirstOrDefault());
-                    await _userManager.AddToRoleAsync(oldUser, newUser.Employee.Position);
-                }
-
-
                 oldUser.Name = newUser.Name;
                 oldUser.Surname = newUser.Surname;
                 oldUser.Email = newUser.Email;
                 oldUser.PhoneNumber = newUser.PhoneNumber;
                 oldUser.UserName = newUser.Email;
                 oldUser.PhoneNumber = newUser.PhoneNumber;
-                oldUser.EmployeeId = newUser.Employee.Id;
-                oldUser.Employee = newUser.Employee;
+                oldUser.Employee.Salary = newUser.Employee.Salary;
+                oldUser.Employee.Address.Country = newUser.Employee.Address.Country;
+                oldUser.Employee.Address.City = newUser.Employee.Address.City;
+                oldUser.Employee.Address.Street = newUser.Employee.Address.Street;
             }  
 
             base._musonHotelContext.Entry(oldUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;

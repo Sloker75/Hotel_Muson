@@ -37,54 +37,73 @@
                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid border border-2 border-primary" style="width: 100px;">
                 <figcaption class="figure-caption">
-                    <h4 style="color: #201E1E;" class="mt-4 ">@Model.Name @Model.Surname</h4>
+                    <p style="color: #201E1E; font-size: 20px; font-family: 'Inter';font-style: normal; font-weight: 600;" class="mt-4 ">@Model.Name @Model.Surname</p>
                     @if (!User.IsInRole("User")){
-                        <p style="font-size: 14px; color: #858484;">@Model.Employee.Position</p>
+                        <p style="font-size: 16px; color: #858484;">@Model.Employee.Position</p>
                     }
                 </figcaption>
             </figure> 
             <div>
-                <ul class="navbar-nav ms-auto text-center">
+                <ul class="navbar-nav ms-auto">
                     <li class="main-link nav-item">
-                        <a asp-controller="Dashboard" asp-action="Index" style="color: #64876F;" class="nav-link">Особисті дані</a>
+                        <a asp-controller="Dashboard" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                            <span><i class="fa-solid fa-id-card fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Особисті дані
+                        </a>
                     </li>
                     @if (!User.IsInRole("User"))
                     {
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Розклад працівніків</a>
+                        <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-regular fa-calendar-days fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Розклад працівніків
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Облік вільних номерів </a>
+                        <li class="data-link nav-item mt-2">
+                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-solid fa-database fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Дані номерів
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Послуги для клієнтів </a>
+                        <li class="data-link nav-item mt-2">
+                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-solid fa-sliders fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Загальні параметри
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Загальні параметри </a>
-                        </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Модерація відгуків </a>
+                        <li class="data-link nav-item mt-2">
+                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-solid fa-comments fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Модерація відгуків
+                            </a>
                         </li>
                     }
                     else
                     {
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Вхід та Безпека</a>
+                        <li class="data-link nav-item mt-2">
+                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link  ms-3">
+                                <span><i class="fa-solid fa-key fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Вхід та безпека
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a asp-controller="Dashboard" asp-action="PaymentData" class="data-link nav-link">Платіжні дані</a>
+                        <li class="nav-item mt-2 data-link">
+                            <a asp-controller="Dashboard" asp-action="PaymentData" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-regular fa-credit-card fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Платіжні дані
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Сповіщення</a>
+                        <li class="data-link nav-item mt-2">
+                            <a style="color: #64876f; text-decoration: none; font-family: 'Inter'; font-style: normal; font-weight: 400;" asp-controller="Home" asp-action="Index" class="nav-link ms-3">
+                                <span><i class="fa-regular fa-message fa-lg" style="color: #64876f;"></i></span>&nbsp;&nbsp;Повідомлення
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Конфіденційність</a>
+                        <li class="data-link nav-item mt-2">
+                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-regular fa-calendar-days fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Мої бронювання
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Загальні параметри </a>
+                        <li class="data-link nav-item mt-2">
+                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-solid fa-sliders fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Загальні параметри
+                            </a>
                         </li>
-                        <li class="nav-item mt-2">
-                            <a class="data-link nav-link" href="#">Мої відгуки</a>
+                        <li class="data-link nav-item mt-2">
+                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-solid fa-comments fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Мої відгуки
+                            </a>
                         </li>
                     }
                 </ul>        

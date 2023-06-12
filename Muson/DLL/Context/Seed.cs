@@ -28,7 +28,9 @@ namespace DLL.Context
                     var newAdminUser = new User()
                     {
                         UserName = adminUserEmail,
-                        Name = "Vladyslav",
+                        Name = "Владислав",
+                        Surname = "Славко",
+                        BirthDate = DateTime.Now,
                         Email = adminUserEmail,
                         PhoneNumber = "2049526383",
                         EmailConfirmed = true,
@@ -41,9 +43,9 @@ namespace DLL.Context
                         Salary = 1000,
                         Address = new Address()
                         {
-                            Country = "Canada",
-                            City = "Charlotte",
-                            Street = "123 Main St"
+                            Country = "Україна",
+                            City = "Львів",
+                            Street = "Шевченка 26"
                         },
                         User = newAdminUser
                     };

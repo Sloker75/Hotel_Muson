@@ -15,8 +15,8 @@ namespace Domain.Models
         public int RoomId { get; set; }
         public Room Room { get; set; }
         [ForeignKey("Service")]
-        public int ServiceId { get; set; }
-        public Service Service { get; set; }
+        public int? ServiceId { get; set; }
+        public Service? Service { get; set; }
         [ForeignKey("User")]
         public string? UserId { get; set; }
         public User? User { get; set; }

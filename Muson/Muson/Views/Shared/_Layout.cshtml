@@ -5,7 +5,11 @@
 @inject UserManager<User> UserManager
 
 @{
-    var currentUser = await UserManager.GetUserAsync(User);
+    User? currentUser = await UserManager.GetUserAsync(User);
+    IList<string> userRoles = null;
+    if(currentUser != null){
+        userRoles = await UserManager.GetRolesAsync(currentUser);
+    }
 }
 
 <!DOCTYPE html>
@@ -132,20 +136,50 @@
                     </li>
                 }
                 else{
-                    <li class="dropdown-item">Name</li>
-                        <li class="dropdown-item">Role</li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a asp-controller="Dashboard" asp-action="Index" class="dropdown-item"><i class="fa-regular fa-user" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Мій Аккаунт</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-message" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Повідомлення</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-heart" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Программа лояльності Muson</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-calendar-days" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Мій Розклад роботи</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-bookmark" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Заявка на бронювання</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-regular fa-comments" style="color: #858484;"></i>&nbsp;&nbsp;&nbsp;Відгуки</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Сповіщення</a></li>
-                        <li><a class="dropdown-item" href="#">Довідка</a></li>
-                        <li><a asp-controller="Account" asp-action="Logout" class="dropdown-item"><i class="fa-solid fa-right-from-bracket" style="color: #EA1A1A;"></i>&nbsp;&nbsp;&nbsp;Вийти</a></li>
-
+                    <li style="color: #201E1E;" class="dropdown-item text-header">@currentUser.Name @currentUser.Surname</li>
+                    <li style="color: #858484;" class="dropdown-item">@userRoles.FirstOrDefault()</li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Dashboard" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-user" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Мій Аккаунт
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-message" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Повідомлення
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-solid fa-list-check" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Мої бронювання
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" style="color: #64876f;" asp-controller="Home" asp-action="Index">
+                            <span><i class="fa-solid fa-calendar-days" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Мій Розклад роботи
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-comments" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Відгуки
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-regular fa-bell" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Сповіщення
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: #64876f;" asp-controller="Home" asp-action="Index" class="dropdown-item">
+                            <span><i class="fa-solid fa-circle-exclamation" style="color: #64876f;"></i></span>&nbsp;&nbsp;&nbsp;Довідка
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="Account" asp-action="Logout" class="dropdown-item">
+                            <span><i class="fa-solid fa-right-from-bracket" style="color: #EA1A1A;"></i></span>&nbsp;&nbsp;&nbsp;Вийти
+                        </a>
+                    </li>    
                 }
                  
             }

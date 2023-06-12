@@ -13,9 +13,7 @@ namespace Domain.Models
         }
         public string Name { get; set; }
         public string Surname { get; set; }
-
-        // public string Photo { get; set; }
-        // public DateTime DateOfBirth { get; set;}
+        public DateTime BirthDate { get; set; }
 
         [ForeignKey("Employee")]
         public int? EmployeeId { get; set; }

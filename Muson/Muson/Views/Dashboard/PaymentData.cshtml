@@ -46,9 +46,11 @@
                 </figcaption>
             </figure> 
             <div>
-                <ul class="navbar-nav ms-auto text-center">
-                    <li class="nav-item">
-                        <a asp-controller="Dashboard" asp-action="Index" style="color: #64876F;" class="nav-link">Особисті дані</a>
+                <ul class="navbar-nav ms-auto">
+                    <li class="data-link nav-item">
+                        <a asp-controller="Dashboard" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                            <span><i class="fa-solid fa-id-card fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Особисті дані
+                        </a>
                     </li>
                         @if (!User.IsInRole("User"))
                         {
@@ -70,23 +72,35 @@
                         }
                         else
                         {
-                            <li class="nav-item mt-2">
-                                <a class="data-link nav-link" href="#">Вхід та Безпека</a>
+                            <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link  ms-3">
+                                    <span><i class="fa-solid fa-key fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Вхід та безпека
+                                </a>
                             </li>
-                            <li class="main-link nav-item mt-2">
-                                <a asp-controller="Dashboard" asp-action="PaymentData" class="data-link nav-link">Платіжні дані</a>
+                            <li class="main-link nav-item mt-2 data-link">
+                                <a asp-controller="Dashboard" asp-action="PaymentData" style="color: #64876F;" class="nav-link ms-3">
+                                    <span><i class="fa-regular fa-credit-card fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Платіжні дані
+                                </a>
                             </li>
-                            <li class="nav-item mt-2">
-                                <a class="data-link nav-link" href="#">Сповіщення</a>
+                            <li class="data-link nav-item mt-2">
+                                <a style="color: #64876f; text-decoration: none;" asp-controller="Home" asp-action="Index" class="nav-link ms-3">
+                                    <span><i class="fa-regular fa-message fa-lg" style="color: #64876f;"></i></span>&nbsp;&nbsp;Повідомлення
+                                </a>
                             </li>
-                            <li class="nav-item mt-2">
-                                <a class="data-link nav-link" href="#">Конфіденційність</a>
+                            <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                                    <span><i class="fa-regular fa-calendar-days fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Мої бронювання
+                                </a>
                             </li>
-                            <li class="nav-item mt-2">
-                                <a class="data-link nav-link" href="#">Загальні параметри </a>
+                            <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                                    <span><i class="fa-solid fa-sliders fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Загальні параметри
+                                </a>
                             </li>
-                            <li class="nav-item mt-2">
-                                <a class="data-link nav-link" href="#">Мої відгуки</a>
+                            <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                                    <span><i class="fa-solid fa-comments fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Мої відгуки
+                                </a>
                             </li>
                         }
                 </ul>        

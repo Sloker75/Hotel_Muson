@@ -1,8 +1,5 @@
 ﻿using BLL.Services;
-using BLL.Services.Interfaces;
-using Domain.Models;
 using Domain.Models.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Muson.Controllers
@@ -57,7 +54,6 @@ namespace Muson.Controllers
             if (userViewModel != null && Email != null && user != null)
             {
                 await _userService.ChangeUserAsync(userViewModel, Email);
-                return RedirectToRoute(new { Controller = "Dashboard", Action = "Index" });
             }
             return RedirectToRoute(new { Controller = "Home", Action = "Index" });
         }
