@@ -78,3 +78,29 @@ a:hover {
 }
 /*Footer*/
 
+
+.main-screen {
+    background: #F5F5F5;
+}
+
+.btn {
+    background: #CBBAA9;
+    border-radius: 40px;
+}
+
+.btn1 {
+    box-sizing: border-box;
+    border: 1px solid #858484;
+    border-radius: 10px;
+}
+
+.hp-screen2 {
+    left: 100px;
+    top: 900px;
+}
+
+.card1 {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);
+    border-radius: 30px;
+}
