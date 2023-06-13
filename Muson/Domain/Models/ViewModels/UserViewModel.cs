@@ -14,6 +14,8 @@ namespace Domain.Models.ViewModels
         public string Name { get; set; }
         [Required]
         public string Surname { get; set; }
+        [Required]
+        public DateTime BirthDate { get; set; }
         [Display(Name = "Email address")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }

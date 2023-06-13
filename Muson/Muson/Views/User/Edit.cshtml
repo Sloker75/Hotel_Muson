@@ -34,16 +34,12 @@
                     <span asp-validation-for="Surname" class="text-danger"></span>
                 </div>
             </div>
-            @*<div style="width: 615px; margin: auto; display: block;" class="row">
+            <div style="width: 615px; margin: auto; display: block;" class="row">
                 <div class="col-12">
-                    <input type="datetime-local" style="height: 50px;" asp-for="" class="form-control rounded-pill mt-3" placeholder="@Model.Email">
-                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <input type="datetime-local" style="height: 50px;" asp-for="BirthDate" class="form-control rounded-pill mt-3" placeholder="@Model.BirthDate">
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
-            </div>*@
-                @*BirthDate*@
-                @*<div class="row">
-
-            </div>*@
+            </div>
             @if (!User.IsInRole("User")){
                 <div style="width: 615px; margin: auto; display: block;" class="row">
                     <div class="col-12">

@@ -9,6 +9,8 @@ namespace Domain.Models.ViewModels
         [Required]
         public string Surname { get; set; }
         [Required]
+        public DateTime BirthDate { get; set; }
+        [Required]
         public string UserName { get; set; }
         [Display(Name = "Email address")]
         [Required(ErrorMessage = "Email address is required")]

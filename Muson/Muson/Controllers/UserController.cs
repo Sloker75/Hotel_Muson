@@ -40,6 +40,7 @@ namespace Muson.Controllers
             {
                 Name = user.Name,
                 Surname = user.Surname,
+                BirthDate = user.BirthDate,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 Employee = user.Employee

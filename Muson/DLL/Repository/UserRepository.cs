@@ -24,27 +24,21 @@ namespace DLL.Repository
         {
             var oldUser = Entities.FirstOrDefault(x => x.Email == oldUserEmail);
             var userRole = await _userManager.GetRolesAsync(oldUser);
-            if(userRole.First() == "User")
+
+            oldUser.Name = newUser.Name;
+            oldUser.Surname = newUser.Surname;
+            oldUser.BirthDate = newUser.BirthDate;
+            oldUser.Email = newUser.Email;
+            oldUser.PhoneNumber = newUser.PhoneNumber;
+            oldUser.UserName = newUser.Email;
+
+            if (userRole.First() != "User")
             {
-                oldUser.Name = newUser.Name;
-                oldUser.Surname = newUser.Surname;
-                oldUser.Email = newUser.Email;
-                oldUser.PhoneNumber = newUser.PhoneNumber;
-                oldUser.UserName = newUser.Email;
-            }
-            else
-            {
-                oldUser.Name = newUser.Name;
-                oldUser.Surname = newUser.Surname;
-                oldUser.Email = newUser.Email;
-                oldUser.PhoneNumber = newUser.PhoneNumber;
-                oldUser.UserName = newUser.Email;
-                oldUser.PhoneNumber = newUser.PhoneNumber;
                 oldUser.Employee.Salary = newUser.Employee.Salary;
                 oldUser.Employee.Address.Country = newUser.Employee.Address.Country;
                 oldUser.Employee.Address.City = newUser.Employee.Address.City;
                 oldUser.Employee.Address.Street = newUser.Employee.Address.Street;
-            }  
+            } 
 
             base._musonHotelContext.Entry(oldUser).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             await base._musonHotelContext.SaveChangesAsync();
@@ -83,6 +77,7 @@ namespace DLL.Repository
                 SecurityStamp = Guid.NewGuid().ToString(),
                 Name = userRegistrationVM.Name,
                 Surname = userRegistrationVM.Surname,
+                BirthDate = userRegistrationVM.BirthDate,
                 Email = userRegistrationVM.Email,
                 UserName = userRegistrationVM.Email,
                 PhoneNumber = userRegistrationVM.PhoneNumber,

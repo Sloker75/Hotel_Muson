@@ -111,54 +111,61 @@
         </div>
         <div class="col-sm-9">
             <div class="row border-bottom border-3">
-                <div class="col-5 pb-3">Ім'я та Прізвище</div>
-                <div class="col-3 text-center pb-3">@Model.Name @Model.Surname</div>
+                <div class="col-5 pb-3"><span style="color: #353535; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 18px;">Ім'я та Прізвище</span></div>
+                <div class="col-3 text-center pb-3"><span style="color: #858484;">@Model.Name @Model.Surname</span></div>
                 <div class="col-3 text-lg-end pb-3">
-                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
                 </div>
             </div>
-            <div class="row mt-4 border-bottom border-3">
-                <div class="col-5 pb-3">Електронна адреса
+            <div class="row mt-3 border-bottom border-3">
+                <div class="col-5 pb-3"><span style="color: #353535; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 18px;">Електронна адреса</span>
                     <br/> 
                     <p style="font-size: 12px; color: #858484;">Це адреса, яку ви використовуєте для входу, і кудими надсилаємо ваші підтвердження бронювань.</p>
                 </div>
-                <div class="col-3 text-center pb-3">@Model.Email</div>
+                <div class="col-3 text-center pb-3"><span style="color: #858484;">@Model.Email</span></div>
                 <div class="col-3 text-lg-end pb-3">
-                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
                 </div>
             </div>
             <div class="row mt-4 border-bottom border-3">
-                <div class="col-5 pb-3">Номер телефону
+                <div class="col-5 pb-3"><span style="color: #353535; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 18px;">Номер телефону</span>
                     <br/> 
                     <p style="font-size: 12px; color: #858484;">На цей номер можуть дзвонити господарі житла й організатори дозвілля, за ним можна входити в акаунт.</p>
                 </div>
-                <div class="col-3 text-center pb-3">@Model.PhoneNumber</div>
+                <div class="col-3 text-center pb-3"><span style="color: #858484;">@Model.PhoneNumber</span></div>
                 <div class="col-3 text-lg-end pb-3">
-                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
+                </div>
+            </div>
+            <div class="row mt-4 border-bottom border-3">
+                <div class="col-5 pb-3"><span style="color: #353535; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 18px;">Дата народження</span></div>
+                <div class="col-3 text-center pb-3"><span style="color: #858484;">@Model.BirthDate.ToString("dd/MM/yyyy")</span></div>
+                <div class="col-3 text-lg-end pb-3">
+                    <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
                 </div>
             </div>
             @*add birthday*@
             @if (!User.IsInRole("User")) 
             {
                 <div class="row mt-4 border-bottom border-3">
-                    <div class="col-5 pb-3">Ваша країна</div>
-                    <div class="col-3 text-center pb-3">@Model.Employee.Address.Country</div>
+                    <div class="col-5 pb-3"><span style="color: #353535; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 18px;">Ваша країна</span></div>
+                    <div class="col-3 text-center pb-3"><span style="color: #858484;">@Model.Employee.Address.Country</span></div>
                     <div class="col-3 text-lg-end pb-3">
-                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
                     </div>
                 </div>
                 <div class="row mt-4 border-bottom border-3">
-                    <div class="col-5 pb-3">Ваша адреса</div>
-                    <div class="col-3 text-center pb-3">@Model.Employee.Address.Street, @Model.Employee.Address.City</div>
+                    <div class="col-5 pb-3"><span style="color: #353535; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 18px;">Ваша адреса</span></div>
+                    <div class="col-3 text-center pb-3"><span style="color: #858484;">@Model.Employee.Address.Street, @Model.Employee.Address.City</span></div>
                     <div class="col-3 text-lg-end pb-3">
-                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
                     </div>
                 </div>
                 <div class="row mt-4 border-bottom border-3">
-                    <div class="col-5 pb-3">Ваша зарплата</div>
-                    <div class="col-3 text-center pb-3">@Model.Employee.Salary UAH</div>
+                    <div class="col-5 pb-3"><span style="color: #353535; font-family: 'Inter'; font-style: normal; font-weight: 400; font-size: 18px;">Ваша зарплата</span></div>
+                        <div class="col-3 text-center pb-3"><span style="color: #858484;">@Model.Employee.Salary UAH</span></div>
                     <div class="col-3 text-lg-end pb-3">
-                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F;" class="nav-link px-2 link-secondary">Редагувати</a>
+                        <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
                     </div>
                 </div>
             }
