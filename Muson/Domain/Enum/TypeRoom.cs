@@ -3,11 +3,13 @@
     public enum TypeRoom
     {
         Standart,
-        FamilyRoom,
-        CornerRoom,
-        ExtraBed,
-        Business,
+        Single,
+        Studio,
+        Family,
+        Delux,
+        Luxury,
+        Penhouse,
         President,
-        Balcony
+        Townhouse
     }
 }
