@@ -1,61 +1,62 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Головна сторінка";
 }
 
-<main class="container">
-    <div class="main-screen card bg-dark text-white">
-        <img src="/image/main_screenBGRND.png" class="card-img" alt="Stony Beach" />
-        <div class="card-img-overlay">
-            <p class="card-text">Найкраще місце для вашого відпочинку</p>
-            <h2 class="card-title">Шукаєте хороший готель для відпочинку в горах?</h2>
-            <h1 class="card-title">Muson - саме для вас!</h1>
-            <button type="button" class="btn btn-primary btn-rounded">Забронювати</button>
+<main class="container main-page">
+
+    <div class="card text-white flex-container">
+        <img src="/image/main_screenBGRND.png" class="card-img" alt="Stony Beach"/>
+        <div class="main-screen card-img-overlay">
+            <p class="card-text text-main-screen">Найкраще місце для вашого відпочинку</p>
+            <p class="card-title text2-main-screen">Шукаєте хороший готель для відпочинку в горах?</p>
+            <p class="card-title text2-main-screen"> Muson - саме для вас!</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Забронювати</a>
         </div>
     </div>
 
     <div class="hp-screen2">
-        <div class="p-5 text-center bg-light" style="margin-top: 58px;">
+        <div class="p-5 text-center" style="margin-top: 58px;">
             <h1 class="mb-3">Наші переваги</h1>
         </div>
 
         <div class="row row-cols-1 row-cols-md-4 g-5">
-            <div class="col">
-                <div class="card card1 text-center">
-                    <img src="/image/Screen 2-1.svg" class="card-img-top" alt="Цілодобовий ресторан" />
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
+                    <img src="/image/Screen 2-1.svg" class="card-img-center" alt="Цілодобовий ресторан" />
                     <div class="card-body">
-                        <h5 class="card-title">Цілодобовий ресторан</h5>
-                        <p class="card-text">
+                        <h5 class="card-title1">Цілодобовий ресторан</h5>
+                        <p class="card-text1">
                             Ресторан працює цілобово, щоб клієнти не втрачали часу і могли скуштувати смачні страви
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card1 text-center">
-                    <img src="/image/Screen 2-2.svg" class="card-img-top" alt="Найсмачніші страви" />
-                    <div class="card-body">
-                        <h5 class="card-title">Найсмачніші страви </h5>
-                        <p class="card-text">Наш ресторан пропонує страви на любий смак та настрій</p>
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
+                    <img src="/image/Screen 2-2.svg" class="card-img-center" alt="Найсмачніші страви" />
+                    <div class="card-body fixed-container">
+                        <h5 class="card-title1">Найсмачніші страви </h5>
+                        <p class="card-text1">Наш ресторан пропонує страви на любий смак та настрій</p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card1 text-center">
-                    <img src="/image/Screen 2-3.svg" class="card-img-top" alt="Відпочинок на ваш смак" />
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
+                    <img src="/image/Screen 2-3.svg" class="card-img-center" alt="Відпочинок на ваш смак" />
                     <div class="card-body">
-                        <h5 class="card-title">Відпочинок на ваш смак</h5>
-                        <p class="card-text">
+                        <h5 class="card-title1">Відпочинок на ваш смак</h5>
+                        <p class="card-text1">
                             У нас є відпочинок як для дорослих, так і для дітей
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card1 text-center">
-                    <img src="/image/Screen 2-4.svg" class="card-img-top" alt="Швидке та якісне прибирання в номері" />
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
+                    <img src="/image/Screen 2-4.svg" class="card-img-center" alt="Швидке та якісне прибирання в номері" />
                     <div class="card-body">
-                        <h5 class="card-title">Швидке та якісне прибирання в номері</h5>
-                        <p class="card-text">
+                        <h5 class="card-title1">Швидке та якісне прибирання в номері</h5>
+                        <p class="card-text1">
                             Потрібно негайно прибратися в номері, наш персонал зробить швидко і без будь-яких але
                         </p>
                     </div>
@@ -63,43 +64,43 @@
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-4 g-5">
-            <div class="col">
-                <div class="card card1 text-center">
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
                     <img src="/image/Screen 2-5.svg" class="card-img-top" alt="Акції та знижки" />
                     <div class="card-body">
-                        <h5 class="card-title">Акції та знижки</h5>
-                        <p class="card-text">
+                        <h5 class="card-title1">Акції та знижки</h5>
+                        <p class="card-text1">
                             Ми турбуємось про наших клієнтів, тому ми регулярно проводимо знижки та акційні пропозиції
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card1 text-center">
-                    <img src="/image/Screen 2-6.svg" class="card-img-top" alt="Цілодобова технічна підтрмика" />
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
+                    <img src="/image/Screen 2-6.svg" class="card-img-center" alt="Цілодобова технічна підтрмика" />
                     <div class="card-body">
-                        <h5 class="card-title">Цілодобова технічна підтрмика</h5>
-                        <p class="card-text">У разі будь яких питань, ви можете сміливо звернутися  до тех.підтримки нашого готеля</p>
+                        <h5 class="card-title1">Цілодобова технічна підтрмика</h5>
+                        <p class="card-text1">У разі будь яких питань, ви можете сміливо звернутися  до тех.підтримки нашого готеля</p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card1 text-center">
-                    <img src="/image/Screen 2-7.svg" class="card-img-top" alt="Великий вибір платіжних систем" />
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
+                    <img src="/image/Screen 2-7.svg" class="card-img-center" alt="Великий вибір платіжних систем" />
                     <div class="card-body">
-                        <h5 class="card-title">Великий вибір платіжних систем</h5>
-                        <p class="card-text">
+                        <h5 class="card-title1">Великий вибір платіжних систем</h5>
+                        <p class="card-text1">
                             Наш сервіс підтримує до 7 платіжних систем. Обираєте ту, яка вам більш до вподоби
                         </p>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card card1 text-center">
-                    <img src="/image/Screen 2-8.svg" class="card-img-top" alt="Цілодобове розміщення" />
+            <div class="col fixed-container">
+                <div class="card card1 text-center justify-content-center align-items-center">
+                    <img src="/image/Screen 2-8.svg" class="card-img-center" alt="Цілодобове розміщення" />
                     <div class="card-body">
-                        <h5 class="card-title">Цілодобове розміщення</h5>
-                        <p class="card-text">
+                        <h5 class="card-title1">Цілодобове розміщення</h5>
+                        <p class="card-text1">
                             Адміністрація готелю працює цілодобово і розмістить вас в любий час та день
                         </p>
                     </div>
@@ -109,7 +110,7 @@
     </div>
 
     <div class="hp-screen3">
-        <div class="p-5 text-center bg-light" style="margin-top: 58px;">
+        <div class="p-5 text-center" style="margin-top: 58px;">
             <h1 class="mb-3">Готельні номери</h1>
         </div>
 
