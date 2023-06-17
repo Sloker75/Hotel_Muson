@@ -1,22 +1,194 @@
 ﻿@using Domain.Enum
 @using Domain.Models.ViewModels
 @model List<RoomViewModel>
+@using Domain.Models
+﻿@using Microsoft.AspNetCore.Identity
 
-<h1>Room</h1>
-<li><a asp-controller="Room" asp-action="Create" class="nav-link px-2">CreateRoom</a></li>
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
-@foreach (var roomItem in Model)
-{
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-        <h5 class="card-title">Room @roomItem.RoomNumber</h5>
-        <h6 class="card-subtitle mb-2 text-muted">The room has @roomItem.CountRoom beds and is located on the @roomItem.Floor floor</h6>
-        @*<a asp-controller="Room" asp-action="Edit" asp-route-id="@roomItem.RoomId" class="card-link">Edit</a>
-        <a asp-controller="Room" asp-action="Delete" asp-route-id="@roomItem.RoomId" class="card-link">Delete</a>*@
-            @Html.ActionLink("Edit", "Edit", new {  RoomId=roomItem.RoomId  }) 
-            @Html.ActionLink("Delete", "Delete", new { RoomId = roomItem.RoomId  })
-      </div>
-    </div>
+@{
+    User? currentUser = await UserManager.GetUserAsync(User);
+    IList<string> userRoles = null;
+    if (currentUser != null)
+    {
+        userRoles = await UserManager.GetRolesAsync(currentUser);
+    }
 }
+
+<style>
+    .main-link{
+        background-color: #D9D9D980; 
+        border-left: 1px solid #64876F!important;
+        border-width: 5px!important;
+    }
+
+    .data-link{
+        color: #64876F;
+    }
+
+    .data-link:hover{
+        color: #64876F;
+        background-color: #D9D9D980; 
+    }  
+</style>
+
+<section>
+    <div clamargin-righttainer-fluid">
+        <div class="row mt-0">
+            <div class="col">
+                <nav class="rounded-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Головна </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Інформація про номери</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+
+        <p style="font-family: 'Ubuntu';font-style: normal; font-weight: 500; font-size: 35px; color: #201E1E;" class="text-center">Інформація про номери</p>
+    <div class="row mt-5">
+        <div class="col-sm-3 ">
+            <figure class="text-center">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+              class="rounded-circle img-fluid border border-2 border-primary" style="width: 100px;">
+                <figcaption class="figure-caption">
+                    <h4 style="color: #201E1E;" class="mt-4 ">@currentUser.Name @currentUser.Surname</h4>
+                        @if (!User.IsInRole("User"))
+                        {
+                                <p style="font-size: 14px; color: #858484;">@userRoles.FirstOrDefault()</p>
+                        }
+                </figcaption>
+            </figure> 
+            <div>
+                <ul class="navbar-nav ms-auto">
+                    <li class="data-link nav-item">
+                        <a asp-controller="Dashboard" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                            <span><i class="fa-solid fa-id-card fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Особисті дані
+                        </a>
+                    </li>
+                        @if (!User.IsInRole("User"))
+                        {
+                            <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                    <span><i class="fa-regular fa-calendar-days fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Розклад працівніків
+                                </a>
+                            </li>
+                            <li class="main-link nav-item mt-2">
+                                <a asp-controller="Room" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                    <span><i class="fa-solid fa-database fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Інформація про номери
+                                </a>
+                            </li>
+                            <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                    <span><i class="fa-solid fa-sliders fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Загальні параметри
+                                </a>
+                            </li>
+                            <li class="data-link nav-item mt-2">
+                                <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                    <span><i class="fa-solid fa-comments fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Модерація відгуків
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                                <li class="data-link nav-item mt-2">
+                                    <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link  ms-3">
+                                        <span><i class="fa-solid fa-key fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Вхід та безпека
+                                    </a>
+                                </li>
+                                <li class="main-link nav-item mt-2 data-link">
+                                    <a asp-controller="Dashboard" asp-action="PaymentData" style="color: #64876F;" class="nav-link ms-3">
+                                        <span><i class="fa-regular fa-credit-card fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Платіжні дані
+                                    </a>
+                                </li>
+                                <li class="data-link nav-item mt-2">
+                                    <a style="color: #64876f; text-decoration: none;" asp-controller="Home" asp-action="Index" class="nav-link ms-3">
+                                        <span><i class="fa-regular fa-message fa-lg" style="color: #64876f;"></i></span>&nbsp;&nbsp;Повідомлення
+                                    </a>
+                                </li>
+                                <li class="data-link nav-item mt-2">
+                                    <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                                        <span><i class="fa-regular fa-calendar-days fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Мої бронювання
+                                    </a>
+                                </li>
+                                <li class="data-link nav-item mt-2">
+                                    <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                                        <span><i class="fa-solid fa-sliders fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Загальні параметри
+                                    </a>
+                                </li>
+                                <li class="data-link nav-item mt-2">
+                                    <a asp-controller="Home" asp-action="Index" style="color: #64876F;" class="nav-link ms-3">
+                                        <span><i class="fa-solid fa-comments fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Мої відгуки
+                                    </a>
+                                </li>
+                        }
+                </ul>        
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-12 text-lg-end">
+                    <p style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 18px; color: #858484;">
+                        <a asp-controller="Room" asp-action="Create" style="text-decoration: none;">
+                            <span><i class="fa-solid fa-circle-plus"></i></span>
+                            <span style="margin-left: 10px;">Добавити кімнату</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                    @foreach (var roomItem in Model)
+                    {
+                        <div style="width: 23rem;" class="col-6">
+                        <div class="row">
+                            <div class="col-12 text-lg-end">
+                                <a style="text-decoration: none; margin-right: 10px;" asp-controller="Room" asp-action="Edit" asp-route-RoomId="@roomItem.RoomId">
+                                    <span><i class="fa-regular fa-pen-to-square" style="color: #858484;"></i></span>
+                                </a>
+                                <a style="text-decoration: none;" asp-controller="Room" asp-action="Delete" asp-route-RoomId="@roomItem.RoomId">
+                                    <span><i class="fa-solid fa-trash-can" style="color: #E31D1C;"></i></span>
+                                </a>
+                            </div>
+                        </div> 
+                        @{
+                            string typeRoom = @roomItem.TypeRoom.ToString() + ".png";
+                         }
+                        <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0 mt-1">
+                            <img src="~/image/room/@typeRoom" class="card-img-top">
+                            <div style="padding-bottom: 0.5rem;" class="card-body">
+                                <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">@roomItem.Price UAH <span style="font-size: 14px;">/ одну ніч</span></p>
+                                <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">@roomItem.TypeRoom</p>
+                                    <p style="font-size: 12px; color: #858484;" class="card-text">@roomItem.ShortDescription</p>
+                                <hr class="my-2"/>
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-user-group" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 людина</span></p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+    
+    
+    
+
+</section>
 
 

@@ -18,6 +18,12 @@ namespace Domain.Models.ViewModels
         [Required]
         public int Floor { get; set; }
         [Required]
+        public int Price { get; set; }
+        [Required]
+        public string ShortDescription { get; set; }
+        [Required]
+        public string LongDescription { get; set; }
+        [Required]
         public TypeRoom TypeRoom { get; set; }
         [Required]
         public RoomStatus Status { get; set; }

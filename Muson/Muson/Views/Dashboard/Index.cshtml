@@ -30,7 +30,7 @@
         </nav>
       </div>
     </div>
-    <h3 class="text-center">Особисті дані</h3>
+    <p style="font-family: 'Ubuntu';font-style: normal; font-weight: 500; font-size: 35px; color: #201E1E;" class="text-center">Особисті дані</p>
     <div class="row mt-5">
         <div class="col-sm-3 ">
             <figure class="text-center">
@@ -58,8 +58,8 @@
                             </a>
                         </li>
                         <li class="data-link nav-item mt-2">
-                            <a asp-controller="Home" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
-                                <span><i class="fa-solid fa-database fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Дані номерів
+                            <a asp-controller="Room" asp-action="Index" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400;" class="nav-link ms-3">
+                                <span><i class="fa-solid fa-database fa-lg" style="color: #64876f;"></i></span> &nbsp;&nbsp;Інформація про номери
                             </a>
                         </li>
                         <li class="data-link nav-item mt-2">
@@ -144,7 +144,6 @@
                     <a asp-controller="User" asp-action="Edit" asp-route-email="@Model.Email" style="color: #64876F; font-family: 'Inter'; font-style: normal; font-weight: 400; padding-top: 0px;" class="nav-link px-2 link-secondary">Редагувати</a>
                 </div>
             </div>
-            @*add birthday*@
             @if (!User.IsInRole("User")) 
             {
                 <div class="row mt-4 border-bottom border-3">

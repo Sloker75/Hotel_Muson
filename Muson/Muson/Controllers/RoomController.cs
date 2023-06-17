@@ -3,9 +3,11 @@ using Domain.Models;
 using Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Expressions;
 
 namespace Muson.Controllers
 {
+    [Authorize]
     public class RoomController : Controller
     {
         private readonly RoomService _roomService;
@@ -15,7 +17,7 @@ namespace Muson.Controllers
         {
             _roomService = roomService;
         }
-        [Authorize(Roles="User")]
+
         public async Task<IActionResult> Index()
         {
             var roomModels = await _roomService.GetAllAsync();
@@ -25,6 +27,9 @@ namespace Muson.Controllers
                 RoomNumber = rm.RoomNumber,
                 CountRoom = rm.CountRoom,
                 Floor = rm.Floor,
+                Price = rm.Price,
+                ShortDescription = rm.ShortDescription,
+                LongDescription = rm.LongDescription,
                 TypeRoom = rm.TypeRoom,
                 Status = rm.Status,
                 Bookings = rm.Bookings
@@ -59,6 +64,9 @@ namespace Muson.Controllers
                 RoomNumber = room.RoomNumber,
                 CountRoom = room.CountRoom,
                 Floor = room.Floor,
+                Price = room.Price,
+                ShortDescription = room.ShortDescription,
+                LongDescription = room.LongDescription,
                 TypeRoom = room.TypeRoom,
                 Status = room.Status,
                 Bookings = room.Bookings
@@ -88,6 +96,9 @@ namespace Muson.Controllers
                 RoomNumber = room.RoomNumber,
                 CountRoom = room.CountRoom,
                 Floor = room.Floor,
+                Price = room.Price,
+                ShortDescription = room.ShortDescription,
+                LongDescription = room.LongDescription,
                 TypeRoom = room.TypeRoom,
                 Status = room.Status,
                 Bookings = room.Bookings

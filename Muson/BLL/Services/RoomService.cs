@@ -21,6 +21,9 @@ namespace BLL.Services
                 RoomNumber = roomVM.RoomNumber,
                 CountRoom = roomVM.CountRoom,
                 Floor = roomVM.Floor,
+                Price = roomVM.Price,
+                ShortDescription = roomVM.ShortDescription,
+                LongDescription = roomVM.LongDescription,
                 TypeRoom = roomVM.TypeRoom,
                 Status = roomVM.Status,
             };
