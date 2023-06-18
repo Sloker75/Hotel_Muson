@@ -90,16 +90,11 @@ a:hover {
     height: 275px;
     left: 80px;
     top: 100px;
-
 }
-
 .btn {
     background: #CBBAA9;
     border-radius: 40px;
-    left: 5.16%;
-    right: 79.74%;
-    top: 58.14%;
-    bottom: 30.43%;
+
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -108,11 +103,18 @@ a:hover {
     text-align: center;
     letter-spacing: 0.05em;
 }
-
 .btn1 {
     box-sizing: border-box;
     border: 1px solid #858484;
     border-radius: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    width: 186px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 550px;
 }
 .hp-screen2 {
     left: 100px;
@@ -177,5 +179,14 @@ a:hover {
     text-align: center;
     color: #858484;
 }
-
+.fa-star {
+    color: #2CB47B;
+}
+.p-cont {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #858484;
+}
 /*HomePage finish*/
