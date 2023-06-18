@@ -4,6 +4,7 @@
     {
         Busy,
         Reserved,
-        Available
+        Available,
+        NotServiced
     }
 }

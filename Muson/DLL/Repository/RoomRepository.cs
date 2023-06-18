@@ -20,6 +20,9 @@ namespace DLL.Repository
             oldRoom.RoomNumber = newRoom.RoomNumber;
             oldRoom.CountRoom = newRoom.CountRoom;
             oldRoom.Floor = newRoom.Floor;
+            oldRoom.Price = newRoom.Price;
+            oldRoom.ShortDescription = newRoom.ShortDescription;
+            oldRoom.LongDescription = newRoom.LongDescription;
             oldRoom.TypeRoom = newRoom.TypeRoom;
             oldRoom.Status = newRoom.Status;
 

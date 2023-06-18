@@ -6,10 +6,10 @@
         Single,
         Studio,
         Family,
-        Delux,
+        Deluxe,
         Luxury,
         Penhouse,
-        President,
+        Presidential,
         Townhouse
     }
 }
