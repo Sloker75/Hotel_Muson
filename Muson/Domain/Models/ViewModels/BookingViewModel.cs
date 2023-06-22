@@ -14,7 +14,7 @@ namespace Domain.Models.ViewModels
         public DateTime DateDeparture { get; set; }
         public int Price { get; set; }
         public Room Room { get; set; }
-        public Service Service { get; set; }
+        public Service? Service { get; set; }
         public User User { get; set; }
     }
 }
