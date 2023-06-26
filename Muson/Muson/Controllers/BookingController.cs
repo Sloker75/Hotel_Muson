@@ -1,4 +1,5 @@
 ﻿using BLL.Services;
+using Domain.Enum;
 using Domain.Models;
 using Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -41,8 +42,26 @@ namespace Muson.Controllers
             return View();
         }
 
+        //TODO: MyBooking page
+
         [HttpGet]
-        public IActionResult Create() => View();
+        public async Task<IActionResult> Create(string typeRoom)
+        {
+            var rooms = await _roomService.GetAllAsync();
+            foreach(var item in rooms)
+            {
+                if (item.TypeRoom.ToString() == typeRoom && item.Status.ToString() == "Available")
+                {
+                    BookingViewModel bookingViewModel = new BookingViewModel()
+                    {
+                        Room = item
+                    };
+                    return View(bookingViewModel);
+                }
+            }
+            return RedirectToAction("Index");
+
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(BookingViewModel bookingViewModel)
