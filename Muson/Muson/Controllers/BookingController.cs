@@ -70,7 +70,7 @@ namespace Muson.Controllers
             var user = await _signInManager.UserManager.GetUserAsync(User);
             bookingViewModel.Room = room;
             await _userService.AddBookingAsync(bookingViewModel, user.Id);
-            return RedirectToRoute(new { Controller = "Dashboard", Action = "Index" });
+            return RedirectToRoute(new { Controller = "Home", Action = "Index" });
         }
 
 
