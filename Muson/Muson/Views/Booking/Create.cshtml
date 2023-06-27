@@ -83,26 +83,26 @@
                 </nav>
             </div>
         </div>
-        <p style="font-family: 'Ubuntu'; font-style: normal; font-weight: 500; font-size: 35px; color: #201E1E;"style>
+        <p style="font-family: 'Ubuntu'; font-style: normal; font-weight: 500; font-size: 35px; color: #201E1E;">
             @Model.Room.TypeRoom
         </p>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div style="height: 400px; width: 415px;" class="col-5">
-                <img style="height: 400px; border-radius: 10px;" src="~/image/room/Deluxe.png" class="card-img-top">
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+            <div style="height: 500px; width: 415px; padding-right: 0;" class="col-5">
+                <img style="height: 500px; border-radius: 10px;" src="~/image/room/Deluxe.png" class="card-img-top">
             </div>
-            <div style="width: 310px;" class="col-3">
-                <div style="height: 197px; width: 280px;">
-                    <img style="height: 195px; border-radius: 10px;" src="~/image/room/Deluxe.png" class="card-img-top">
+            <div style="width: 270px;" class="col-3">
+                <div style="height: 247px; width: 230px;">
+                    <img style="height: 245px; border-radius: 10px;" src="~/image/room/Deluxe.png" class="card-img-top">
                 </div>
-                <div style="height: 197px; width: 280px;" class="mt-2">
-                    <img style="height: 195px; border-radius: 10px;"style src="~/image/room/Deluxe.png" class="card-img-top">
+                <div style="height: 247px; width: 230px;" class="mt-2">
+                    <img style="height: 245px; border-radius: 10px;" src="~/image/room/Deluxe.png" class="card-img-top">
                 </div>
             </div>
-            <div style="height: 400px; width: 380px;" class="col-4 text-lg-start">
+            <div style="height: 400px; width: 430px;" class="col-4 text-lg-start">
                 <p style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 18px; color: #201E1E;">
                     Опис номера
                 </p>
-                <p style="font-size: 14px; color: #858484">@Model.Room.LongDescription</p>
+                <p style="font-size: 14px; color: #858484">@Model.Room.ShortDescription</p>
 
                 <div class="row mt-3">
                     <div class="col-4">
@@ -116,9 +116,341 @@
                     </div>
                 </div>
 
+                <p style="font-size: 18px; font-family: Inter; font-weight: 400; color: #353535;">Які тут зручності</p>
+                
+                <div class="row row-cols-1 row-cols-md-3 g-2 mt-4">
+                    <div class="col">
+                        <img style="height: 20px; width: 20px;" src="~/image/icon/streamline_computer-connection-wifi-wireless-wifi-internet-server-network.png" />
+                        <span style="margin-left: 10px; font-size: 12px;">Інтернет</span>
+                    </div>
+                    <div class="col">
+                        <img style="height: 20px; width: 20px;" src="~/image/icon/streamline_food-kitchenware-refrigerator-fridge-cook-appliances-cooking-nutrition-freezer-appliance-food.png" />
+                        <span style="margin-left: 10px; font-size: 12px;">Холодильник</span>
+                    </div>
+                    <div class="col">
+                        <img style="height: 20px; width: 20px;" src="~/image/icon/iconoir_modern-tv.png" />
+                        <span style="margin-left: 10px; font-size: 12px;">Телевізор</span>
+                    </div>
+                    <div class="col">
+                        <img style="height: 20px; width: 20px;" src="~/image/icon/mdi_hair-dryer-outline.png" />
+                        <span style="margin-left: 10px; font-size: 12px;">Фен</span>
+                    </div>
+
+                    <div class="col">
+                        <img style="height: 20px; width: 20px;" src="~/image/icon/ic_outline-iron.png" />
+                        <span style="margin-left: 10px; font-size: 12px;">Праска</span>
+                    </div>
+                    <div class="col">
+                        <img style="height: 20px; width: 20px;" src="~/image/icon/tabler_air-conditioning-disabled.png" />
+                        <span style="margin-left: 10px; font-size: 12px;">Кондиціонер</span>
+                    </div>
+                    @*<div class="col">
+                        <img style="height: 20px; width: 20px;" src="~/image/icon/solar_washing-machine-minimalistic-linear.png" />
+                        <span style="margin-left: 10px; font-size: 12px;">Пральна машина</span>
+                    </div>*@
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col">
+                        <p style="font-size: 18px; color: #858484;">Ціна</p>
+                    </div>
+
+                    <div class="col">
+                        <p class="text-lg-end" style="font-size: 25px; font-family: Inter; font-weight: 600; color: #201E1E;">@Model.Room.Price UAH</p>
+                    </div>
+                </div>
+
+                <form method="post" asp-action="Create" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col form-group">
+                            <label class="mb-1" asp-for="DateArrival">Дата заїзду</label>
+                            <input asp-for="DateArrival" type="date" style="height: 50px; width: 180px;" class="form-control rounded-pill" placeholder="Вкажіть дату" min="@DateTime.Now.ToString("yyyy-MM-dd")">
+                            <span asp-validation-for="DateArrival" class="text-danger"></span>
+                        </div>
+                        <div class="col form-group">
+                            <label class="mb-1" asp-for="DateDeparture">Дата виїзду</label>
+                            <input asp-for="DateDeparture" type="date" style="height: 50px; width: 180px;" class="form-control rounded-pill" placeholder="Вкажіть дату" min="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+                            <span asp-validation-for="DateDeparture" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <hr class="my-4"/>
+                    <div class="row mt-2">
+                        <div class="col-8">
+                            <p style="font-size: 18px; color: #353535; font-family: Inter; font-weight: 500;">Ціна без податків </p>
+                        </div>
+
+                        <div class="col-4">
+                            <p class="text-lg-end" style="font-size: 18px; color: #353535; font-family: Inter; font-weight: 500;">@Model.Room.Price UAH</p>
+                        </div>
+                    </div>
+                    <input asp-for="Room.TypeRoom" type="hidden"/> 
+                    <button style="width: 430px; background-color: #CBBAA9; font-size: 18px; color: #fff;" class="btn btn-lg mt-2 rounded-pill" type="submit">Забронювати</button>
+                </form>
+
             </div>
         </div>
 
+        <div class="row mt-5">
+            <div class="col-5">
+                <p style="font-size: 25px; font-family: Ubuntu; font-weight: 500; color: #201E1E">Опис</p>
+                <p style="color: #858484; font-size: 16px;" class="mt-2">
+                    Пентхаус в готелі - це витончений символ розкіші та престижу. Цей найвищий номер пропонує неперевершений комфорт і величезний простір, де кожна деталь продумана до найменших подробиць.
+                    <br /> <br />
+                    У пентхаусі є розкішна спальня зі зручним ліжком, окрема вітальня з м'якими меблями та шикарно облаштована їдальня для вашої приватної вечері. Інтер'єр вишуканий і елегантний, з використанням високоякісних матеріалів та стильного дизайну.
+                    <br /> <br />
+                    Цей просторий та елегантний пентхаус в готелі - це оазис розкіші, де ви зможете насолодитися незабутнім відпочинком і вищим рівнем сервісу. Він ідеально підходить для вимогливих гостей, які шукають неперевершений досвід перебування в готелі.
+                </p>
+            </div>
+            <div class="col-7">
+                <p style="font-size: 25px; font-family: Ubuntu; font-weight: 500; color: #201E1E">Найпопулярніші зручності</p>
+                
+                <div class="row mt-2">
+                    <div class="col">
+                        <p style="font-size: 18px; font-family: Inter; font-weight: 600; color: #353535;">Парковка</p>
+                        <div>
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Безкоштовна приватна автостоянка розміщена на території готелю (необхідне попереднє резервування місця).
+                             </span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <p style="font-size: 18px; font-family: Inter; font-weight: 600; color: #353535;">Інтернет</p>
+                        <div>
+                             <img style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Бездротовий доступ до Інтернету надається на всій території готелю безкоштовно.
+                             </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-3">
+                        <p style="font-size: 18px; font-family: Inter; font-weight: 600; color: #353535;">Кухня</p>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Cтіл
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Тарілки
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Плита
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Прибори
+                             </span>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <p style="font-size: 18px; font-family: Inter; font-weight: 600; color: #353535;">Зручності</p>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Опалення
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Вентилятор
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                Праска
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Сушка
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Вішалки
+                             </span>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div>
+                            <p style="font-size: 18px; font-family: Inter; font-weight: 600; color: #353535;">Вітальня</p>
+                            <div class="mt-2">
+                                <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                                <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                    Диван
+                                </span>
+                            </div>
+                            <div class="mt-2">
+                                <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                                <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                    Вітальня
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <p class="mt-2" style="font-size: 18px; font-family: Inter; font-weight: 600; color: #353535;">Спальня</p>
+                            <div>
+                                <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                                <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                    Шафа
+                                </span>
+                            </div>
+                            <div class="mt-2">
+                                <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                                <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                    Гардеробна
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <p style="font-size: 18px; font-family: Inter; font-weight: 600; color: #353535;">Ванна</p>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Рушники
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                 Туалет
+                             </span>
+                        </div>
+                        <div class="mt-2">
+                             <img class="text-center" style="height: 20px; width: 20px;" src="~/image/icon/Vector.png" />
+                             <span style="margin-left: 10px; font-size: 16px; color: #858484;">
+                                Душ
+                             </span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        <p style="font-size: 35px; font-family: Ubuntu; font-weight: 500; color: #201E1E;" class="text-center mt-4">Найпопурярніші номери</p>
+
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col-3">
+                        <a style="text-decoration: none;" asp-controller="Booking" asp-action="Create" asp-route-typeRoom="Standart">
+                            <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
+                                <img src="~/image/room/Standart.png" class="card-img-top">
+                                <div style="padding-bottom: 0.5rem;" class="card-body">
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Стандартний</p>
+                                    <p style="font-size: 12px; color: #858484;" class="card-text">Стандартний номер у готелі, що складається з однієї кімнати без будь-яких надмірностей.</p>
+                                    <hr class="my-2"/>
+                                    <div class="row mt-3">
+                                        <div class="col-4">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-user-group" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 людина</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+            </div>
+                    <div class="col-3" >
+                        <a style="text-decoration: none;" asp-controller="Booking" asp-action="Create" asp-route-typeRoom="Single">
+                            <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
+                                <img src="~/image/room/Single.png" class="card-img-top">
+                                <div style="padding-bottom: 0.5rem;" class="card-body">
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Одномісний</p>
+                                    <p style="font-size: 12px; color: #858484;" class="card-text">Одномісна кімната для одного гостя. Це ідеальний варіант для короткотривалого проживання.</p>
+                                    <hr class="my-2"/>
+                                    <div class="row mt-3">
+                                        <div class="col-4">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-user-group" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 людина</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3" >
+                        <a style="text-decoration: none;" asp-controller="Booking" asp-action="Create" asp-route-typeRoom="Studio">
+                            <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
+                                <img src="~/image/room/Studio.png" class="card-img-top">
+                                <div style="padding-bottom: 0.5rem;" class="card-body">
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Студія</p>
+                                    <p style="font-size: 12px; color: #858484;" class="card-text">Простора кімната з відокремленою зоною для відпочинку та спальнею.</p>
+                                    <hr class="my-2"/>
+                                    <div class="row mt-3">
+                                        <div class="col-4">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-user-group" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 людина</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-3" >
+                        <a style="text-decoration: none;" asp-controller="Booking" asp-action="Create" asp-route-typeRoom="Studio">
+                            <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
+                                <img src="~/image/room/Studio.png" class="card-img-top">
+                                <div style="padding-bottom: 0.5rem;" class="card-body">
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Студія</p>
+                                    <p style="font-size: 12px; color: #858484;" class="card-text">Простора кімната з відокремленою зоною для відпочинку та спальнею.</p>
+                                    <hr class="my-2"/>
+                                    <div class="row mt-3">
+                                        <div class="col-4">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-user-group" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 людина</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
+                                        </div>
+                                        <div class="col-4 text-center">
+                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div> 
+        </div>
 
     </div>
 </section>

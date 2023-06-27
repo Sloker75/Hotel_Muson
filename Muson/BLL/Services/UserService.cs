@@ -71,11 +71,9 @@ namespace BLL.Services
                 Id = bookingViewModel.BookingId,
                 DateArrival = bookingViewModel.DateArrival,
                 DateDeparture = bookingViewModel.DateDeparture,
-                Price = bookingViewModel.Price,
+                Price = bookingViewModel.Room.Price,
                 RoomId = bookingViewModel.Room.Id,
                 Room = bookingViewModel.Room,
-                ServiceId = bookingViewModel.Service.Id,
-                Service = bookingViewModel.Service,
                 User = (await FindByConditionUserAsync(x => x.Id == userId)).FirstOrDefault(),
                 UserId = userId
             };
