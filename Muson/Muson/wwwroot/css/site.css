@@ -190,3 +190,12 @@ a:hover {
     color: #858484;
 }
 /*HomePage finish*/
+
+.about-page {
+    background: #FFFFFF;
+    width: 1920px;
+    height: 1500px;
+}
+.custom-column {
+    margin-bottom: 80px;
+}
