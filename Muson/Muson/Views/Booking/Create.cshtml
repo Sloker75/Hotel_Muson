@@ -2,74 +2,6 @@
 @using Domain.Models.ViewModels
 @model BookingViewModel
 
-@*<form method="post" asp-action="Create" enctype="multipart/form-data">
-  <div class="form-group">
-    <label asp-for="DateArrival">Date Arrival</label>
-    <input asp-for="DateArrival" class="form-control" placeholder="Date Arrival">
-    <span asp-validation-for="DateArrival" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="DateDeparture">Date Departure</label>
-    <input asp-for="DateDeparture" class="form-control" placeholder="Date Departure">
-    <span asp-validation-for="DateDeparture" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Price">Price</label>
-    <input asp-for="Price" class="form-control" placeholder="Prace">
-    <span asp-validation-for="Price" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Room.TypeRoom">TypeRoom</label>
-    <select asp-for="Room.TypeRoom" asp-items="@Html.GetEnumSelectList<TypeRoom>()" class="form-control">
-             <option>--Select--</option>
-    </select>
-    <span asp-validation-for="Room.TypeRoom" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasFridge">Fridge</label>
-    @Html.CheckBoxFor(x => x.Service.hasFridge)
-    <span asp-validation-for="Service.hasFridge" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasTV">TV</label>
-    @Html.CheckBoxFor(x => x.Service.hasTV)
-    <span asp-validation-for="Service.hasTV" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasInternet">Internet</label>
-     @Html.CheckBoxFor(x => x.Service.hasInternet)
-     <span asp-validation-for="Service.hasInternet" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasSmoking">Smoking</label>
-    @Html.CheckBoxFor(x => x.Service.hasSmoking)
-    <span asp-validation-for="Service.hasSmoking" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasAirConditioning">Air Conditioning</label>
-    @Html.CheckBoxFor(x => x.Service.hasAirConditioning)
-    <span asp-validation-for="Service.hasAirConditioning" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasParkingLot">ParkingLot</label>
-   @Html.CheckBoxFor(x => x.Service.hasParkingLot)
-   <span asp-validation-for="Service.hasParkingLot" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasIron">Iron</label>
-    @Html.CheckBoxFor(x => x.Service.hasIron)
-    <span asp-validation-for="Service.hasIron" class="text-danger"></span>
-  </div>
-  <div class="form-group">
-    <label asp-for="Service.hasBabysitter">Babysitter</label>
-    @Html.CheckBoxFor(x => x.Service.hasBabysitter)
-    <span asp-validation-for="Service.hasBabysitter" class="text-danger"></span>
-  </div>
-  
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>*@
-
-
 <section>
     <div class="container-fluid">
         <div class="row">
@@ -144,10 +76,6 @@
                         <img style="height: 20px; width: 20px;" src="~/image/icon/tabler_air-conditioning-disabled.png" />
                         <span style="margin-left: 10px; font-size: 12px;">Кондиціонер</span>
                     </div>
-                    @*<div class="col">
-                        <img style="height: 20px; width: 20px;" src="~/image/icon/solar_washing-machine-minimalistic-linear.png" />
-                        <span style="margin-left: 10px; font-size: 12px;">Пральна машина</span>
-                    </div>*@
                 </div>
 
                 <div class="row mt-4">
@@ -183,15 +111,15 @@
                             <p class="text-lg-end" style="font-size: 18px; color: #353535; font-family: Inter; font-weight: 500;">@Model.Room.Price UAH</p>
                         </div>
                     </div>
-                    <input asp-for="Room.TypeRoom" type="hidden"/> 
+                    <input asp-for="Room.Id" type="hidden"/> 
                     <button style="width: 430px; background-color: #CBBAA9; font-size: 18px; color: #fff;" class="btn btn-lg mt-2 rounded-pill" type="submit">Забронювати</button>
                 </form>
 
             </div>
         </div>
 
-        <div class="row mt-5">
-            <div class="col-5">
+        <div class="row">
+            <div class="col-5 mt-5">
                 <p style="font-size: 25px; font-family: Ubuntu; font-weight: 500; color: #201E1E">Опис</p>
                 <p style="color: #858484; font-size: 16px;" class="mt-2">
                     Пентхаус в готелі - це витончений символ розкіші та престижу. Цей найвищий номер пропонує неперевершений комфорт і величезний простір, де кожна деталь продумана до найменших подробиць.
@@ -201,7 +129,7 @@
                     Цей просторий та елегантний пентхаус в готелі - це оазис розкіші, де ви зможете насолодитися незабутнім відпочинком і вищим рівнем сервісу. Він ідеально підходить для вимогливих гостей, які шукають неперевершений досвід перебування в готелі.
                 </p>
             </div>
-            <div class="col-7">
+            <div class="col-7 mt-5">
                 <p style="font-size: 25px; font-family: Ubuntu; font-weight: 500; color: #201E1E">Найпопулярніші зручності</p>
                 
                 <div class="row mt-2">
@@ -359,7 +287,7 @@
                             <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
                                 <img src="~/image/room/Standart.png" class="card-img-top">
                                 <div style="padding-bottom: 0.5rem;" class="card-body">
-                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 22px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну ніч</span></p>
                                     <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Стандартний</p>
                                     <p style="font-size: 12px; color: #858484;" class="card-text">Стандартний номер у готелі, що складається з однієї кімнати без будь-яких надмірностей.</p>
                                     <hr class="my-2"/>
@@ -371,7 +299,10 @@
                                             <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
                                         </div>
                                         <div class="col-4 text-center">
-                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                            <p style="font-size: 12px; color: #858484;">
+                                                <img style="height: 18px; width: 18px;" src="~/image/icon/fluent_resize-large-16-regular.png" /> 
+                                                <span style="margin-left: 3px;">2𝑥5 m</span>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -383,7 +314,7 @@
                             <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
                                 <img src="~/image/room/Single.png" class="card-img-top">
                                 <div style="padding-bottom: 0.5rem;" class="card-body">
-                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 22px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну ніч</span></p>
                                     <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Одномісний</p>
                                     <p style="font-size: 12px; color: #858484;" class="card-text">Одномісна кімната для одного гостя. Це ідеальний варіант для короткотривалого проживання.</p>
                                     <hr class="my-2"/>
@@ -395,7 +326,7 @@
                                             <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
                                         </div>
                                         <div class="col-4 text-center">
-                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                            <p style="font-size: 12px; color: #858484;"><img style="height: 18px; width: 18px;" src="~/image/icon/fluent_resize-large-16-regular.png" /> <span style="margin-left: 3px;">2𝑥5 m</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -407,7 +338,7 @@
                             <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
                                 <img src="~/image/room/Studio.png" class="card-img-top">
                                 <div style="padding-bottom: 0.5rem;" class="card-body">
-                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 22px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну ніч</span></p>
                                     <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Студія</p>
                                     <p style="font-size: 12px; color: #858484;" class="card-text">Простора кімната з відокремленою зоною для відпочинку та спальнею.</p>
                                     <hr class="my-2"/>
@@ -419,7 +350,7 @@
                                             <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
                                         </div>
                                         <div class="col-4 text-center">
-                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                            <p style="font-size: 12px; color: #858484;"><img style="height: 18px; width: 18px;" src="~/image/icon/fluent_resize-large-16-regular.png" /></span> <span style="margin-left: 3px;">2𝑥5 m</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -431,7 +362,7 @@
                             <div style="box-shadow: 0px 0px 100px 1px rgba(0, 0, 0, 0.05);" class="card border-0" style="width: 19rem;">
                                 <img src="~/image/room/Studio.png" class="card-img-top">
                                 <div style="padding-bottom: 0.5rem;" class="card-body">
-                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну людину</span></p>
+                                    <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 22px; color: #64876F;">2 200 UAH <span style="font-size: 14px;">/ одну ніч</span></p>
                                     <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">Студія</p>
                                     <p style="font-size: 12px; color: #858484;" class="card-text">Простора кімната з відокремленою зоною для відпочинку та спальнею.</p>
                                     <hr class="my-2"/>
@@ -443,7 +374,7 @@
                                             <p style="font-size: 12px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
                                         </div>
                                         <div class="col-4 text-center">
-                                            <p style="font-size: 12px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                            <p style="font-size: 12px; color: #858484;"><img style="height: 18px; width: 18px;" src="~/image/icon/fluent_resize-large-16-regular.png" /> <span style="margin-left: 3px;">2𝑥5 m</span></p>
                                         </div>
                                     </div>
                                 </div>

@@ -1,0 +1,58 @@
+﻿@using Domain.Enum
+@using Domain.Models.ViewModels
+@model List<BookingViewModel>
+
+
+
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <nav class="rounded-3 mb-4">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Головна </a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Мої бронювання</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <p style="font-size: 35px; font-family: Ubuntu; font-weight: 500; color: #201E1E;" class="text-center">Ваші бронювання</p>
+
+        <div class="card mb-3 border-0">
+            <div class="row g-0">
+                @foreach (var bookingItem in Model)
+                {
+                    string typeRoom = @bookingItem.Room.TypeRoom.ToString() + ".png";
+                    <div class="col-md-4">
+                        <img style="height: 300px; width: 480px; border-radius: 15px;" src="~/image/room/@typeRoom" class="img-fluid rounded-start">
+                    </div>
+                    <div style="max-width: 380px; margin-left: 30px;" class="col-md-8">
+                        <div class="card-body">
+                            <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 600; font-size: 25px; color: #64876F;">@bookingItem.Price UAH <span style="font-size: 14px;">/ одну ніч</span></p>
+                            <p class="card-title" style="font-family: 'Inter'; font-style: normal; font-weight: 500; font-size: 16px; color: #353535;">@bookingItem.Room.TypeRoom</p>
+                            <p style="font-size: 12px; color: #858484;" class="card-text">@bookingItem.Room.ShortDescription</p>
+
+                            <hr class="my-2"/>
+                                <div class="row mt-3">
+                                    <div class="col-4">
+                                        <p style="font-size: 14px; color: #858484;"><span><i class="fa-solid fa-user-group" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 людина</span></p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <p style="font-size: 14px; color: #858484;"><span><i class="fa-solid fa-bed" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">1 ліжко</span></p>
+                                    </div>
+                                    <div class="col-4 text-center">
+                                        <p style="font-size: 14px; color: #858484;"><span><i class="fa-regular fa-square" style="color: #64876f;"></i></span> <span style="margin-left: 10px;">2𝑥5 m</span></p>
+                                    </div>
+                                </div>
+                            <p style="font-size: 18px; font-family: Inter; font-style: normal; color: #353535;" class="mt-2">Дата бронювання</p>
+                                <p style="font-size: 18px; color: #858484;" class="mt-2">@bookingItem.DateArrival.ToString("dd-MM-yyyy") - @bookingItem.DateDeparture.ToString("dd-MM-yyyy")</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</section>
