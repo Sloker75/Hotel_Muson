@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Контакти";
+}
+
+<main class="container contact-page">
+    <div class="row">
+        <div class="col" style="margin-top:40px;">
+            <nav class="rounded-3 mb-4">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Головна </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Контакти</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="hp-screen2">
+        <div class="p-5 text-center">
+            <h1 class="mb-3">Зворотній звʼязок</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="p-cont2">вулиця Свободи, 59/2, Яремче, Івано-Франківська область, Україна, 78500</p>
+                <p class="p-cont2">Email: Muson@gmail.com</p>
+                <p class="p-cont2">+380 (501)13 28 28</p>
+                <p class="p-cont2">+380 (245) 97 97 57</p>
+                <p class="p-cont2">+380 (175) 22 55 64</p>
+
+                <form>
+                    <div class="form-group">
+                        <label for="email">Підпишіться на нашу розсилку:</label>
+                        <input type="email" class="form-control" id="email" placeholder="Введіть адрес електронної пошти">
+                    </div>
+
+                    <a class="btn btn-lg mt-2 rounded-pill" role="button" asp-controller="Contact" asp-action="Index" style="width: 145px; background-color: #CBBAA9; font-size: 14px; color: #fff;">Підписатись</a>
+                </form>
+                <p style="font-family: 'Roboto';font-style: normal;font-weight: 400;font-size: 12px;line-height: 140%;color: #858484;">Натиснувши на кнопку, я погоджуюсь з обробкою персональних даних</p>
+            </div>
+
+            <div class="col-md-6">
+                <p style="font-family: 'Ubuntu';font-style: normal;font-weight: 500;font-size: 20px;line-height: 140%;letter-spacing: 0.05em;color: #201E1E;">
+                    Зворотній зв'язок
+                </p>
+
+                <form method="post" enctype="multipart/form-data">
+                    <div style="width: 615px; margin: auto;" class="row mt-3">
+                        <div class="col-sm-4">
+                            <input style="height: 50px;" class="form-control rounded-pill mt-1" placeholder="Ваше ім'я">
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input style="height: 50px;" type="text" class="form-control rounded-pill mt-1" placeholder="Ваш Email">
+                            <span class="text-danger"></span>
+                        </div>
+                        <div class="col-sm-4">
+                            <input style="height: 50px;" type="text" class="form-control rounded-pill mt-1" placeholder="Ваш телефон">
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div style="width: 615px; margin: auto; display: block;" class="row">
+                        <div class="col-12">
+                            <textarea rows="5" cols="50" type="text" style="border-radius: 10px;"  class="form-control mt-3" placeholder="Ваше повідомлення"></textarea>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <input type="hidden"/>
+                    <button style="width: 160px; background-color: #CBBAA9; font-size: 16px; color: #fff; margin-left:20px;" class="btn btn-lg mt-4 rounded-pill" type="submit">Відправити</button>
+                </form>
+            </div>
+            <div style="margin-top:50px;">
+                <img src="/image/map.png" alt="Мапа" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+</main>
+

@@ -83,10 +83,10 @@ a:hover {
 .main-page {
     background: #FFFFFF;
     width: 1920px;
-    height: 4100px;
+    height: 3850px;
 }
 .main-screen {
-    width: 1920px;
+    width: 1220px;
     height: 275px;
     left: 80px;
     top: 100px;
@@ -189,13 +189,26 @@ a:hover {
     font-size: 20px;
     color: #858484;
 }
-/*HomePage finish*/
-
-.about-page {
-    background: #FFFFFF;
-    width: 1920px;
-    height: 1600px;
+.p-cont2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #858484;
 }
+    /*HomePage finish*/
+ .about-page {
+        background: #FFFFFF;
+        width: 1920px;
+        height: 1600px;
+ }
 .custom-column {
     margin-bottom: 80px;
+}
+
+
+.contact-page {
+    background: #FFFFFF;
+    width: 1920px;
+    height: 1380px;
 }
