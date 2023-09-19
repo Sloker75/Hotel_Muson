@@ -5,6 +5,7 @@ using Domain.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using AutoMapper;
 
 namespace DLL.Repository
 {

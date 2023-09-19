@@ -4,28 +4,23 @@ using Domain.Models;
 using Domain.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using AutoMapper;
 
 namespace DLL.Repository
 {
     public class RoomRepository : BaseRepository<Room>, IRoomRepository
     {
-        public RoomRepository(MusonHotelContext _musonHotelContext) : base(_musonHotelContext)
+        private readonly IMapper _mapper;
+        public RoomRepository(MusonHotelContext _musonHotelContext, IMapper mapper) 
+            : base(_musonHotelContext)
         {
+            _mapper = mapper;
         }
 
         public async Task ChangeRoomAsync(RoomViewModel newRoom, int oldRoomId)
         {
             var oldRoom = Entities.Find(oldRoomId);
-
-            oldRoom.RoomNumber = newRoom.RoomNumber;
-            oldRoom.CountRoom = newRoom.CountRoom;
-            oldRoom.Floor = newRoom.Floor;
-            oldRoom.Price = newRoom.Price;
-            oldRoom.ShortDescription = newRoom.ShortDescription;
-            oldRoom.LongDescription = newRoom.LongDescription;
-            oldRoom.TypeRoom = newRoom.TypeRoom;
-            oldRoom.Status = newRoom.Status;
-
+            _mapper.Map<RoomViewModel, Room>(newRoom, oldRoom);
             base._musonHotelContext.Entry(oldRoom).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             await base._musonHotelContext.SaveChangesAsync();
         }

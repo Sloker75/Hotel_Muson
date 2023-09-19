@@ -13,6 +13,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 var identityBuilder = builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
         .AddRoles<AppRole>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 BLL.Infrastructure.Configuration.ConfigurationService(builder.Services, connectionString, identityBuilder);
 
 Muson.Infrastructure.Configuration.ConfigurationService(identityBuilder);
